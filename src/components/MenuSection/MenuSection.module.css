@@ -1,0 +1,246 @@
+.menu {
+    padding: 100px 0;
+    background-color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative elements */
+.decorLeft {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    width: 80px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.decorRight {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 80px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.decorBottomLeft {
+    position: absolute;
+    bottom: 60px;
+    left: -10px;
+    width: 80px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.decorBottomRight {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    width: 60px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.decorSvg {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.label {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    line-height: 1.2;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Menu Item */
+.menuItem {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all var(--transition-normal);
+    align-items: flex-start;
+}
+
+.menuItem:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.menuImageWrapper {
+    flex-shrink: 0;
+    width: 90px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.menuImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.menuItem:hover .menuImage {
+    transform: scale(1.08);
+}
+
+.menuContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.menuName {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dotLine {
+    flex: 1;
+    border-bottom: 2px dotted var(--color-accent);
+    opacity: 0.5;
+    min-width: 30px;
+}
+
+.menuDescription {
+    font-size: 0.78rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* More Menu Button */
+.buttonWrapper {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.moreMenuBtn {
+    display: inline-block;
+    padding: 16px 44px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.moreMenuBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
+}
+
+.moreMenuBtn:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(200, 144, 45, 0.35);
+}
+
+.moreMenuBtn:hover::before {
+    left: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu {
+        padding: 70px 0;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .decorLeft,
+    .decorRight,
+    .decorBottomLeft,
+    .decorBottomRight {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu {
+        padding: 50px 0;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .menuItem {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .menuImageWrapper {
+        width: 70px;
+        height: 65px;
+    }
+
+    .menuName {
+        font-size: 0.82rem;
+    }
+
+    .menuDescription {
+        font-size: 0.72rem;
+    }
+}

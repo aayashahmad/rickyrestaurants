@@ -1,0 +1,125 @@
+/* Hero Banner */
+.hero {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    margin-top: 75px;
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+            rgba(44, 30, 15, 0.6) 0%,
+            rgba(44, 30, 15, 0.75) 100%);
+}
+
+.heroTitle {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: 6px;
+    text-align: center;
+}
+
+/* Content Section */
+.content {
+    padding: 90px 0 100px;
+    background-color: var(--color-white);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 36px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-top: 36px;
+    margin-bottom: 14px;
+}
+
+.text {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.9;
+    margin-bottom: 0;
+}
+
+.closing {
+    font-size: 0.92rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+    margin-top: 40px;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        height: 240px;
+    }
+
+    .heroTitle {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+
+    .content {
+        padding: 60px 0 70px;
+    }
+
+    .title {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroTitle {
+        font-size: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .text {
+        font-size: 0.85rem;
+    }
+}

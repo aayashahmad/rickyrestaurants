@@ -1,0 +1,207 @@
+/* Hero Banner */
+.hero {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    margin-top: 75px;
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(139, 69, 19, 0.7) 0%, rgba(44, 30, 15, 0.8) 100%);
+}
+
+.heroTitle {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 4px;
+    text-align: center;
+}
+
+/* Menu Page */
+.menuPage {
+    background-color: var(--color-white);
+}
+
+.section {
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+/* Decorative */
+.decorLeft {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    width: 80px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.decorRight {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 80px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.decorSvg {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.sectionTitle {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Menu Item */
+.menuItem {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all var(--transition-normal);
+    align-items: flex-start;
+}
+
+.menuItem:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.menuImageWrapper {
+    flex-shrink: 0;
+    width: 90px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.menuImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.menuItem:hover .menuImage {
+    transform: scale(1.08);
+}
+
+.menuContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.menuName {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dotLine {
+    flex: 1;
+    border-bottom: 2px dotted var(--color-accent);
+    opacity: 0.5;
+    min-width: 30px;
+}
+
+.menuDescription {
+    font-size: 0.78rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        height: 220px;
+    }
+
+    .heroTitle {
+        font-size: 2rem;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .decorLeft,
+    .decorRight {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroTitle {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .menuItem {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .menuImageWrapper {
+        width: 70px;
+        height: 65px;
+    }
+}

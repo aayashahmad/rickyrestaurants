@@ -1,0 +1,252 @@
+.about {
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-white);
+}
+
+/* Decorative elements */
+.decorLeft {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 120px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.decorRight {
+    position: absolute;
+    top: 50px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 100px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.decorSvg {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+/* Image Grid */
+.imageGrid {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.imageOne {
+    margin-top: 40px;
+}
+
+.imageTwo {
+    margin-top: -20px;
+}
+
+.foodImage {
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-slow);
+}
+
+.foodImage:hover {
+    transform: scale(1.03);
+}
+
+/* Content */
+.content {
+    flex: 1;
+}
+
+.label {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.9;
+    margin-bottom: 32px;
+    max-width: 520px;
+}
+
+.orderBtn {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.orderBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.15),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.orderBtn:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200, 144, 45, 0.3);
+}
+
+.orderBtn:hover::before {
+    left: 100%;
+}
+
+/* Thumbnails */
+.thumbnails {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.thumbnail {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal);
+    cursor: pointer;
+}
+
+.thumbnail:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.thumbImage {
+    object-fit: cover;
+    width: 120px;
+    height: 90px;
+    transition: transform var(--transition-slow);
+}
+
+.thumbnail:hover .thumbImage {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        gap: 50px;
+    }
+
+    .imageOne {
+        display: none;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about {
+        padding: 80px 0;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .imageGrid {
+        justify-content: center;
+    }
+
+    .imageOne {
+        display: block;
+        margin-top: 0;
+    }
+
+    .imageTwo {
+        margin-top: 0;
+    }
+
+    .foodImage {
+        width: 200px;
+        height: 280px;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .thumbnails {
+        justify-content: center;
+    }
+
+    .decorLeft,
+    .decorRight {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .about {
+        padding: 60px 0;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .foodImage {
+        width: 160px;
+        height: 220px;
+    }
+
+    .thumbImage {
+        width: 100px;
+        height: 75px;
+    }
+}

@@ -1,0 +1,498 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all var(--transition-normal);
+    background-color: rgba(44, 30, 15, 0.92);
+    backdrop-filter: blur(10px);
+}
+
+.header.scrolled {
+    background-color: rgba(26, 26, 26, 0.97);
+    backdrop-filter: blur(12px);
+    padding: 10px 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-white);
+}
+
+.logoImage {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.logoImage:hover {
+    opacity: 0.9;
+}
+
+.logoContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.logoName {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--color-white);
+    line-height: 1;
+}
+
+.logoSubname {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: var(--color-gold);
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.logoIcon {
+    width: 45px;
+    height: 45px;
+    color: var(--color-gold);
+}
+
+.logoSvg {
+    width: 100%;
+    height: 100%;
+}
+
+.logoArabic {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.75rem;
+    color: var(--color-gold);
+    line-height: 1.2;
+    direction: rtl;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.navItem {
+    position: relative;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 16px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-white);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.navLink:hover {
+    color: var(--color-gold);
+}
+
+.dropdownIcon {
+    font-size: 0.7rem;
+    transition: transform var(--transition-fast);
+}
+
+/* Dropdown */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 10px;
+    z-index: 100;
+}
+
+.dropdownInner {
+    background-color: rgba(35, 25, 15, 0.97);
+    backdrop-filter: blur(16px);
+    border-radius: var(--radius-md);
+    min-width: 230px;
+    padding: 10px 0;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 168, 67, 0.15);
+    animation: fadeInDown 0.25s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownItem {
+    position: relative;
+}
+
+.dropdownLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    letter-spacing: 0.8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.dropdownLink:hover {
+    background-color: rgba(35, 25, 15, 0.97);
+    color: var(--color-gold);
+    border-left-color: var(--color-gold);
+    padding-left: 26px;
+}
+
+.submenuArrow {
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+
+/* Submenu */
+.submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: rgba(35, 25, 15, 0.97);
+    backdrop-filter: blur(16px);
+    border-radius: var(--radius-md);
+    min-width: 260px;
+    padding: 10px 0;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 168, 67, 0.15);
+    animation: fadeInDown 0.25s ease;
+}
+
+.submenuLink {
+    display: block;
+    padding: 13px 22px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.submenuLink:hover {
+    background-color: rgba(35, 25, 15, 0.97);
+    color: var(--color-gold);
+    border-left-color: var(--color-gold);
+    padding-left: 26px;
+}
+
+/* Reservation Button */
+.reservationBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+}
+
+.reservationBtn:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 8px;
+    transition: color var(--transition-fast);
+}
+
+.mobileMenuBtn:hover {
+    color: var(--color-gold);
+}
+
+/* Mobile Overlay */
+.mobileOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+.mobileOverlay.overlayVisible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Mobile Navigation */
+.mobileNav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100vh;
+    background-color: var(--color-dark);
+    z-index: 1001;
+    transition: right var(--transition-normal);
+    overflow-y: auto;
+    flex-direction: column;
+}
+
+.mobileNav.mobileNavOpen {
+    right: 0;
+}
+
+.mobileNavHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileNavTitle {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-gold);
+}
+
+.mobileCloseBtn {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.mobileNavLinks {
+    flex: 1;
+    padding: 16px 0;
+}
+
+.mobileNavItem {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobileNavLinkRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobileNavLink {
+    flex: 1;
+    display: block;
+    padding: 16px 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-white);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color var(--transition-fast);
+}
+
+.mobileNavLink:hover {
+    color: var(--color-gold);
+}
+
+.mobileDropdownToggle {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    padding: 16px 24px 16px 10px;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+    font-size: 0.9rem;
+}
+
+.mobileDropdownToggle.rotated {
+    transform: rotate(180deg);
+}
+
+/* Mobile Dropdown */
+.mobileDropdown {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 4px 0;
+}
+
+.mobileDropdownLinkRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobileDropdownLink {
+    flex: 1;
+    display: block;
+    padding: 12px 24px 12px 40px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-fast);
+}
+
+.mobileDropdownLink:hover {
+    color: var(--color-gold);
+}
+
+/* Mobile Submenu */
+.mobileSubmenu {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 4px 0;
+}
+
+.mobileSubmenuLink {
+    display: block;
+    padding: 10px 24px 10px 56px;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-fast);
+}
+
+.mobileSubmenuLink:hover {
+    color: var(--color-gold);
+}
+
+/* Mobile Navigation Footer */
+.mobileNavFooter {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileReservationBtn {
+    display: block;
+    text-align: center;
+    padding: 14px 28px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+}
+
+.mobileReservationBtn:hover {
+    background-color: var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .desktopNav {
+        display: none;
+    }
+
+    .reservationBtn {
+        display: none;
+    }
+
+    .mobileMenuBtn {
+        display: block;
+    }
+
+    .mobileOverlay {
+        display: block;
+    }
+
+    .mobileNav {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .logoName {
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+    }
+
+    .logoSubname {
+        font-size: 0.55rem;
+        letter-spacing: 4px;
+    }
+
+    .logoIcon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .logoArabic {
+        font-size: 0.65rem;
+    }
+
+    .mobileNav {
+        width: 280px;
+        right: -280px;
+    }
+}
