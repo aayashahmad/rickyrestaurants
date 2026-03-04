@@ -127,21 +127,16 @@ export default function ReservationSection() {
                                 <FaUsers className={styles.inputIcon} />
                                 Number of Guests <span className={styles.required}>*</span>
                             </label>
-                            <select
+                            <input
+                                type="number"
                                 name="guests"
                                 value={formData.guests}
                                 onChange={handleChange}
+                                placeholder="Enter number of guests"
+                                min="1"
                                 required
                                 className={styles.input}
-                            >
-                                <option value="">Select guests</option>
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                                    <option key={n} value={n}>
-                                        {n} {n === 1 ? "Guest" : "Guests"}
-                                    </option>
-                                ))}
-                                <option value="10+">10+ Guests</option>
-                            </select>
+                            />
                         </div>
 
                         {/* Message */}
