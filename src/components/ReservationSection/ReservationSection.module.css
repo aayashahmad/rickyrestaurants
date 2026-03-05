@@ -174,12 +174,11 @@
     font-size: 0.65rem;
     color: var(--color-text-muted);
     letter-spacing: 0.5px;
-    opacity: 0;
+    opacity: 1;
 }
 
 .selectLabelActive {
-    opacity: 1;
-    color: var(--color-gold);
+    opacity: 0;
 }
 
 .input:focus+.floatLabel,

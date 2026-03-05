@@ -151,7 +151,7 @@ export default function ReservationSection() {
                                 </select>
                                 <label
                                     htmlFor="res-table"
-                                    className={`${styles.floatLabel} ${styles.selectLabel} ${formData.table ? styles.selectLabelActive : ""}`}
+                                    className={`${styles.floatLabel} ${styles.selectLabel} ${!formData.table ? styles.selectLabelActive : ""}`}
                                 >
                                     Select Table
                                 </label>
