@@ -35,7 +35,7 @@
 /* Content */
 .content {
     padding: 80px 0 100px;
-    background-color: var(--color-white);
+    background-color: var(--color-bg-elevated);
 }
 
 .container {
@@ -48,7 +48,7 @@
     font-family: var(--font-body);
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--color-dark);
+    color: var(--color-white);
     margin-top: 40px;
     margin-bottom: 16px;
 }
@@ -59,7 +59,7 @@
 
 .text {
     font-size: 0.9rem;
-    color: var(--color-text-light);
+    color: var(--color-text-secondary);
     line-height: 1.85;
     margin-bottom: 16px;
     text-align: justify;
@@ -72,21 +72,21 @@
 
 .list li {
     font-size: 0.9rem;
-    color: var(--color-text-light);
+    color: var(--color-text-secondary);
     line-height: 1.85;
     margin-bottom: 10px;
 }
 
 .list li strong {
-    color: var(--color-dark);
+    color: var(--color-white);
 }
 
 .thankYou {
     font-size: 1rem;
-    color: var(--color-dark);
+    color: var(--color-white);
     margin-top: 40px;
     padding-top: 30px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid var(--color-border);
 }
 
 /* Responsive */
