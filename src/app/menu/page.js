@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FiSearch } from "react-icons/fi";
-import { useScrollReveal } from "@/hooks/useAnimations";
 import { menuSections } from "@/constants/menuData";
 import { useOrder } from "@/context/OrderContext";
 import Toast from "@/components/ui/Toast";
@@ -17,25 +16,29 @@ export default function MenuPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
-    const heroRef = useScrollReveal();
-    const menuRef = useScrollReveal();
     const router = useRouter();
     const { addItem } = useOrder();
 
-    const allItems = (menuSections || []).flatMap((section) =>
-        (section.items || []).map((item) => ({ ...item, category: section.title }))
+    const allItems = useMemo(() => 
+        (menuSections || []).flatMap((section) =>
+            (section.items || []).map((item) => ({ ...item, category: section.title }))
+        ), []
     );
 
-    const sectionTitles = ["All", ...(menuSections || []).map(s => s.title)];
+    const sectionTitles = useMemo(() => ["All", ...(menuSections || []).map(s => s.title)], []);
     
-    let filtered = activeCategory === 0 ? allItems : allItems.filter(item => item.category === sectionTitles[activeCategory]);
-    
-    if (searchQuery.trim()) {
-        filtered = filtered.filter(item => 
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()))
-        );
-    }
+    const filtered = useMemo(() => {
+        let items = activeCategory === 0 ? allItems : allItems.filter(item => item.category === sectionTitles[activeCategory]);
+        
+        if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase();
+            items = items.filter(item => 
+                item.name.toLowerCase().includes(query) ||
+                (item.description && item.description.toLowerCase().includes(query))
+            );
+        }
+        return items;
+    }, [activeCategory, searchQuery, allItems, sectionTitles]);
 
     const handleItemClick = (item) => {
         addItem(item);
@@ -60,7 +63,7 @@ export default function MenuPage() {
             </section>
 
             {/* Menu */}
-            <section className={styles.menuSection} ref={menuRef}>
+            <section className={styles.menuSection}>
                 <div className={styles.container}>
                     {/* Search Bar */}
                     <div className={styles.searchContainer}>
@@ -112,6 +115,8 @@ export default function MenuPage() {
                                         width={400}
                                         height={300}
                                         className={styles.cardImg}
+                                        loading="lazy"
+                                        quality={75}
                                     />
                                     <span className={styles.cardBadge}>{item.category}</span>
                                 </div>

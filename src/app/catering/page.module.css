@@ -109,14 +109,6 @@
 .services {
     padding: 120px 0;
     background: var(--color-bg-elevated);
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.services:global(.visible) {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .tabsHeader {
@@ -236,14 +228,6 @@
 .process {
     padding: 120px 0;
     background: var(--color-bg);
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.process:global(.visible) {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .processHeader {

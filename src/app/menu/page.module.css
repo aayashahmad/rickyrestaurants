@@ -55,16 +55,8 @@
 
 /* Menu Section */
 .menuSection {
-    padding: 80px 0 120px;
+    padding: 100px 0;
     background: var(--color-bg-elevated);
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.menuSection:global(.visible) {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .container {

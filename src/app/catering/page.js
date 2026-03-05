@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useScrollReveal } from "@/hooks/useAnimations";
 import { useBooking } from "@/context/BookingContext";
 import styles from "./page.module.css";
 
@@ -42,9 +41,6 @@ export default function CateringPage() {
     const [activeTab, setActiveTab] = useState("private");
     const router = useRouter();
     const { selectCateringItem } = useBooking();
-    const heroRef = useScrollReveal();
-    const servicesRef = useScrollReveal();
-    const processRef = useScrollReveal();
 
     const handleCateringClick = (service) => {
         selectCateringItem({
@@ -70,7 +66,7 @@ export default function CateringPage() {
             </section>
 
             {/* Services with Tabs */}
-            <section className={styles.services} ref={servicesRef}>
+            <section className={styles.services}>
                 <div className={styles.container}>
                     <div className={styles.tabsHeader}>
                         <span className={styles.label}>Our Services</span>
@@ -106,6 +102,8 @@ export default function CateringPage() {
                                         width={500}
                                         height={350}
                                         className={styles.serviceImg}
+                                        loading="lazy"
+                                        quality={75}
                                     />
                                 </div>
                                 <div className={styles.serviceBody}>
@@ -120,7 +118,7 @@ export default function CateringPage() {
             </section>
 
             {/* Process */}
-            <section className={styles.process} ref={processRef}>
+            <section className={styles.process}>
                 <div className={styles.container}>
                     <div className={styles.processHeader}>
                         <span className={styles.label}>How It Works</span>
