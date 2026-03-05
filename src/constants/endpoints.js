@@ -1,5 +1,5 @@
 // API Base URL — update when backend is ready
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.rickyrestaurants.com";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.emberandoak.ae";
 
 // API Endpoints
 export const ENDPOINTS = {

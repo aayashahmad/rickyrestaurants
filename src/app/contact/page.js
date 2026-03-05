@@ -1,25 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import {
-    FaPhoneAlt,
-    FaMapMarkerAlt,
-    FaClock,
-    FaUser,
-    FaPhone,
-    FaEnvelope,
-    FaUsers,
-    FaCommentDots,
-} from "react-icons/fa";
+import { useScrollReveal } from "@/hooks/useAnimations";
 import styles from "./page.module.css";
 
 export default function ContactPage() {
+    const formRef = useScrollReveal();
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        mobile: "",
+        name: "",
         email: "",
+        phone: "",
         guests: "",
+        table: "",
         message: "",
     });
     const [submitted, setSubmitted] = useState(false);
@@ -33,217 +25,151 @@ export default function ContactPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 1200));
+        await new Promise((r) => setTimeout(r, 1200));
         setLoading(false);
         setSubmitted(true);
         setTimeout(() => setSubmitted(false), 4000);
-        setFormData({
-            firstName: "",
-            lastName: "",
-            mobile: "",
-            email: "",
-            guests: "",
-            message: "",
-        });
+        setFormData({ name: "", email: "", phone: "", guests: "", table: "", message: "" });
     };
 
     return (
         <>
-            {/* Hero Banner */}
+            {/* Hero */}
             <section className={styles.hero}>
-                <div className={styles.heroOverlay} />
-                <h1 className={styles.heroTitle}>Contact Us</h1>
-            </section>
-
-            {/* Info Cards */}
-            <section className={styles.infoSection}>
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoCard}>
-                        <div className={styles.infoIconWrapper}>
-                            <FaPhoneAlt className={styles.infoIcon} />
-                        </div>
-                        <h3 className={styles.infoTitle}>Call Us</h3>
-                        <p className={styles.infoText}>
-                            <a href="tel:+971543392616">+971 54 339 2616</a>
-                        </p>
-                        <p className={styles.infoText}>
-                            <a href="tel:+97145147066">+971 4 514 7066</a>
-                        </p>
-                    </div>
-
-                    <div className={styles.infoCard}>
-                        <div className={styles.infoIconWrapper}>
-                            <FaMapMarkerAlt className={styles.infoIcon} />
-                        </div>
-                        <h3 className={styles.infoTitle}>Address</h3>
-                        <p className={styles.infoText}>
-                            Shop No. 5, Marina Pearl View Hotel Apt., Waterfront Al Masara
-                            Street, Dubai Marina
-                        </p>
-                    </div>
-
-                    <div className={styles.infoCard}>
-                        <div className={styles.infoIconWrapper}>
-                            <FaClock className={styles.infoIcon} />
-                        </div>
-                        <h3 className={styles.infoTitle}>Opening Hour</h3>
-                        <p className={styles.infoText}>7:00 AM – 12:00 Midnight</p>
-                    </div>
+                <div className={styles.heroBg} />
+                <div className={styles.heroContent}>
+                    <span className={styles.heroLabel}>Get in Touch</span>
+                    <h1 className={styles.heroTitle}>Let&apos;s Start a<br />Conversation</h1>
                 </div>
             </section>
 
-            {/* Contact Form */}
-            <section className={styles.formSection}>
-                <div className={styles.formContainer}>
-                    <div className={styles.formHeader}>
-                        <span className={styles.formLabel}>Get In Touch</span>
-                        <h2 className={styles.formTitle}>Send Us a Message</h2>
-                        <p className={styles.formSubtitle}>
-                            Have a question or want to make a reservation? Fill out the form
-                            below and we&apos;ll get back to you shortly.
-                        </p>
-                    </div>
+            {/* Main Content */}
+            <section className={styles.main} ref={formRef}>
+                <div className={styles.container}>
+                    <div className={styles.grid}>
+                        {/* Contact Info */}
+                        <div className={styles.infoCol}>
+                            <h2 className={styles.infoTitle}>Visit Our Restaurant</h2>
+                            <p className={styles.infoText}>
+                                We&apos;d love to hear from you. Whether you&apos;re looking to make
+                                a reservation, plan an event, or simply say hello.
+                            </p>
 
-                    <div className={styles.formCard}>
-                        <div className={styles.glowAccent1} />
-                        <div className={styles.glowAccent2} />
-
-                        <form onSubmit={handleSubmit} className={styles.form}>
-                            <div className={styles.nameRow}>
-                                <div className={styles.inputGroup}>
-                                    <label className={styles.inputLabel}>
-                                        <FaUser className={styles.labelIcon} />
-                                        First Name <span className={styles.required}>*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="firstName"
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        placeholder="John"
-                                        required
-                                        className={styles.input}
-                                    />
+                            <div className={styles.infoItems}>
+                                <div className={styles.infoItem}>
+                                    <span className={styles.infoIcon}>📍</span>
+                                    <div>
+                                        <strong>Address</strong>
+                                        <p>Shop No. 5, Marina Pearl View Hotel Apt., Al Masara Street, Dubai Marina</p>
+                                    </div>
                                 </div>
-                                <div className={styles.inputGroup}>
-                                    <label className={styles.inputLabel}>
-                                        <FaUser className={styles.labelIcon} />
-                                        Last Name <span className={styles.required}>*</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="lastName"
-                                        value={formData.lastName}
-                                        onChange={handleChange}
-                                        placeholder="Doe"
-                                        required
-                                        className={styles.input}
-                                    />
+                                <div className={styles.infoItem}>
+                                    <span className={styles.infoIcon}>📞</span>
+                                    <div>
+                                        <strong>Phone</strong>
+                                        <p><a href="tel:+971543392616">+971 54 339 2616</a></p>
+                                        <p><a href="tel:+97145147066">+971 4 514 7066</a></p>
+                                    </div>
+                                </div>
+                                <div className={styles.infoItem}>
+                                    <span className={styles.infoIcon}>🕐</span>
+                                    <div>
+                                        <strong>Hours</strong>
+                                        <p>Daily: 7:00 AM – 12:00 Midnight</p>
+                                    </div>
+                                </div>
+                                <div className={styles.infoItem}>
+                                    <span className={styles.infoIcon}>📧</span>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <p>info@emberandoak.ae</p>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div className={styles.inputGroup}>
-                                <label className={styles.inputLabel}>
-                                    <FaPhone className={styles.labelIcon} />
-                                    Mobile Number <span className={styles.required}>*</span>
-                                </label>
-                                <input
-                                    type="tel"
-                                    name="mobile"
-                                    value={formData.mobile}
-                                    onChange={handleChange}
-                                    placeholder="+971 XX XXX XXXX"
-                                    required
-                                    className={styles.input}
-                                />
-                            </div>
+                        {/* Form */}
+                        <div className={styles.formCard}>
+                            <h3 className={styles.formTitle}>Send a Message</h3>
+                            <form onSubmit={handleSubmit} className={styles.form}>
+                                <div className={styles.row}>
+                                    <div className={styles.field}>
+                                        <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder=" " className={styles.input} id="c-name" />
+                                        <label htmlFor="c-name" className={styles.floatLabel}>Full Name</label>
+                                    </div>
+                                    <div className={styles.field}>
+                                        <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder=" " className={styles.input} id="c-email" />
+                                        <label htmlFor="c-email" className={styles.floatLabel}>Email</label>
+                                    </div>
+                                </div>
+                                <div className={styles.row}>
+                                    <div className={styles.field}>
+                                        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder=" " className={styles.input} id="c-phone" />
+                                        <label htmlFor="c-phone" className={styles.floatLabel}>Phone</label>
+                                    </div>
+                                    <div className={styles.field}>
+                                        <input type="number" name="guests" value={formData.guests} onChange={handleChange} min="1" placeholder=" " className={styles.input} id="c-guests" />
+                                        <label htmlFor="c-guests" className={styles.floatLabel}>Number of Guests</label>
+                                    </div>
+                                </div>
+                                <div className={styles.field}>
+                                    <select
+                                        name="table"
+                                        value={formData.table}
+                                        onChange={handleChange}
+                                        required
+                                        className={`${styles.input} ${styles.selectInput}`}
+                                        id="c-table"
+                                    >
+                                        <option value="" disabled>
+                                            
+                                        </option>
+                                        {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                                            <option key={n} value={String(n)}>
+                                                Table {n}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <label
+                                        htmlFor="c-table"
+                                        className={`${styles.floatLabel} ${styles.selectLabel} ${!formData.table ? styles.selectLabelActive : ""}`}
+                                    >
+                                        Select Table
+                                    </label>
+                                </div>
+                                <div className={styles.field}>
+                                    <textarea name="message" value={formData.message} onChange={handleChange} placeholder=" " rows={4} className={`${styles.input} ${styles.textarea}`} id="c-msg" />
+                                    <label htmlFor="c-msg" className={styles.floatLabel}>Your Message</label>
+                                </div>
 
-                            <div className={styles.inputGroup}>
-                                <label className={styles.inputLabel}>
-                                    <FaEnvelope className={styles.labelIcon} />
-                                    Email <span className={styles.required}>*</span>
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="john@example.com"
-                                    required
-                                    className={styles.input}
-                                />
-                            </div>
+                                <button type="submit" className={styles.submitBtn} disabled={loading}>
+                                    {loading ? <span className={styles.spinner} /> : submitted ? "✓ Sent!" : "Send Message"}
+                                </button>
 
-                            <div className={styles.inputGroup}>
-                                <label className={styles.inputLabel}>
-                                    <FaUsers className={styles.labelIcon} />
-                                    Number of Guests <span className={styles.required}>*</span>
-                                </label>
-                                <input
-                                    type="number"
-                                    name="guests"
-                                    value={formData.guests}
-                                    onChange={handleChange}
-                                    placeholder="Enter number of guests"
-                                    min="1"
-                                    required
-                                    className={styles.input}
-                                />
-                            </div>
-
-                            <div className={styles.inputGroup}>
-                                <label className={styles.inputLabel}>
-                                    <FaCommentDots className={styles.labelIcon} />
-                                    Comment or Message
-                                </label>
-                                <textarea
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    placeholder="Any special requests, dietary requirements, or questions..."
-                                    rows={5}
-                                    className={`${styles.input} ${styles.textarea}`}
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                className={styles.submitBtn}
-                                disabled={loading}
-                            >
-                                {loading ? (
-                                    <span className={styles.spinner} />
-                                ) : submitted ? (
-                                    "✓ Message Sent!"
-                                ) : (
-                                    "Submit"
+                                {submitted && (
+                                    <p className={styles.success}>Thank you! We&apos;ll get back to you shortly.</p>
                                 )}
-                            </button>
-
-                            {submitted && (
-                                <p className={styles.successMsg}>
-                                    Thank you! We&apos;ll get back to you shortly.
-                                </p>
-                            )}
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Google Maps */}
+            {/* Map */}
             <section className={styles.mapSection}>
                 <iframe
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Ricky's+Restaurant,Dubai+Marina,UAE&zoom=15"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.3!2d55.14!3d25.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDA0JzQ4LjAiTiA1NcKwMDgnMjQuMCJF!5e0!3m2!1sen!2sae!4v1234567890!5m2!1sen!2sae"
                     width="100%"
-                    height="450"
+                    height="400"
                     style={{ border: 0 }}
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Ricky's Restaurant Location"
+                    title="Ember & Oak Location"
                     className={styles.map}
                 />
             </section>
+
         </>
     );
 }

@@ -2,95 +2,84 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useScrollReveal } from "@/hooks/useAnimations";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
-    return (
-        <section className={styles.about} id="about">
-            {/* Decorative ice cream cone SVG (matching original site) */}
-            <div className={styles.decorLeft}>
-                <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                    <path
-                        d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z"
-                        fill="none"
-                        stroke="var(--color-light-gray)"
-                        strokeWidth="1.5"
-                        opacity="0.3"
-                    />
-                    <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                </svg>
-            </div>
-            <div className={styles.decorRight}>
-                <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                    <path
-                        d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z"
-                        fill="none"
-                        stroke="var(--color-light-gray)"
-                        strokeWidth="1.5"
-                        opacity="0.3"
-                    />
-                    <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                </svg>
-            </div>
+    const sectionRef = useScrollReveal();
 
+    return (
+        <section className={styles.about} ref={sectionRef}>
             <div className={styles.container}>
-                {/* Left side - Images */}
-                <div className={styles.imageGrid}>
-                    <div className={styles.imageOne}>
-                        <Image
-                            src="/images/about-food-1.png"
-                            alt="Grilled kebabs on charcoal"
-                            width={280}
-                            height={380}
-                            className={styles.foodImage}
-                        />
-                    </div>
-                    <div className={styles.imageTwo}>
-                        <Image
-                            src="/images/about-food-2.png"
-                            alt="Gourmet sandwich"
-                            width={300}
-                            height={400}
-                            className={styles.foodImage}
-                        />
+                <div className={styles.imageCol}>
+                    <div className={styles.imageStack}>
+                        <div className={styles.imgMain}>
+                            <Image
+                                src="/images/about-food-1.png"
+                                alt="Signature dish"
+                                width={400}
+                                height={500}
+                                className={styles.img}
+                            />
+                        </div>
+                        <div className={styles.imgOverlap}>
+                            <Image
+                                src="/images/about-food-2.png"
+                                alt="Chef preparation"
+                                width={280}
+                                height={350}
+                                className={styles.img}
+                            />
+                        </div>
+                        <div className={styles.experienceBadge}>
+                            <span className={styles.badgeNumber}>12+</span>
+                            <span className={styles.badgeText}>Years of<br />Excellence</span>
+                        </div>
                     </div>
                 </div>
 
-                {/* Right side - Content */}
-                <div className={styles.content}>
-                    <span className={styles.label}>About us</span>
-                    <h2 className={styles.title}>EAT WHAT MAKES YOU HAPPY</h2>
+                <div className={styles.textCol}>
+                    <span className={styles.label}>Our Story</span>
+                    <h2 className={styles.title}>
+                        Where Heritage Meets<br />
+                        <span className={styles.titleGold}>Modern Gastronomy</span>
+                    </h2>
                     <p className={styles.description}>
-                        Get the food that makes you drool! Ricky&apos;s Restaurant is one of
-                        the finest restaurants to dine-in with the best combination of
-                        spices according to your taste. Our professional staff is at your
-                        service with food delivery, event catering, and other services.
+                        Nestled in the vibrant heart of Dubai Marina, Ember & Oak
+                        has been a beacon of culinary excellence since its inception. We blend
+                        time-honored recipes from across the Middle East and Mediterranean with
+                        contemporary techniques to create dishes that surprise and delight.
                     </p>
-                    <Link href="/menu" className={styles.orderBtn}>
-                        Order Now
-                    </Link>
+                    <p className={styles.description}>
+                        Our philosophy is simple — source the finest ingredients,
+                        treat them with respect, and serve them with passion. Every plate
+                        that leaves our kitchen carries the dedication of our talented
+                        culinary team.
+                    </p>
 
-                    {/* Small gallery thumbnails */}
-                    <div className={styles.thumbnails}>
-                        <div className={styles.thumbnail}>
-                            <Image
-                                src="/images/catering-special.png"
-                                alt="Food gallery"
-                                width={120}
-                                height={90}
-                                className={styles.thumbImage}
-                            />
+                    <div className={styles.features}>
+                        <div className={styles.feature}>
+                            <span className={styles.featureIcon}>🔥</span>
+                            <div>
+                                <strong>Live Kitchen</strong>
+                                <p>Watch our chefs craft your meal</p>
+                            </div>
                         </div>
-                        <div className={styles.thumbnail}>
-                            <Image
-                                src="/images/catering-yacht.png"
-                                alt="Food gallery"
-                                width={120}
-                                height={90}
-                                className={styles.thumbImage}
-                            />
+                        <div className={styles.feature}>
+                            <span className={styles.featureIcon}>🌿</span>
+                            <div>
+                                <strong>Farm Fresh</strong>
+                                <p>Locally sourced ingredients daily</p>
+                            </div>
                         </div>
                     </div>
+
+                    <Link href="/about" className={styles.readMore}>
+                        Discover Our Journey
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </Link>
                 </div>
             </div>
         </section>

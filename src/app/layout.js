@@ -1,48 +1,55 @@
-import { Playfair_Display, Poppins } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import { OrderProvider } from "@/context/OrderContext";
+import { BookingProvider } from "@/context/BookingContext";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata = {
-  title: "Ricky's Restaurant | Eat What Makes You Happy",
+  title: "Ember & Oak | Flavors That Define Dubai",
   description:
-    "Ricky's Restaurant is one of the finest restaurants in Dubai to dine-in with the best combination of spices. Food delivery, event catering, and other services.",
+    "Experience culinary artistry at Ember & Oak — Dubai Marina's premier destination for exquisite dining, bespoke catering, and unforgettable gatherings.",
   keywords:
-    "restaurant, Dubai, catering, fine dining, food delivery, event catering, wedding catering, corporate catering",
+    "restaurant Dubai, fine dining Dubai Marina, catering services Dubai, luxury dining, private events, corporate catering",
   openGraph: {
-    title: "Ricky's Restaurant | Eat What Makes You Happy",
+    title: "Ember & Oak | Flavors That Define Dubai",
     description:
-      "One of the finest restaurants in Dubai. Food delivery, event catering, and more.",
+      "Dubai Marina's premier destination for exquisite dining and bespoke catering.",
     type: "website",
     locale: "en_US",
-    siteName: "Ricky's Restaurant",
+    siteName: "Ember & Oak",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${playfair.variable} ${poppins.variable}`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <ScrollToTop />
+      <body className={`${cormorant.variable} ${inter.variable}`}>
+        <OrderProvider>
+          <BookingProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <ScrollToTop />
+          </BookingProvider>
+        </OrderProvider>
       </body>
     </html>
   );
 }
+

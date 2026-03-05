@@ -2,94 +2,62 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { grillFeastItems } from "@/constants/menuData";
+import { useScrollReveal } from "@/hooks/useAnimations";
 import styles from "./MenuSection.module.css";
 
+const dishes = [
+    { name: "Grilled Lamb Kofta", category: "Mains", image: "/images/menu/kofta.png", price: "68" },
+    { name: "Caesar Salad", category: "Starters", image: "/images/menu/caesar-salad.png", price: "42" },
+    { name: "Creamy Penne Pasta", category: "Mains", image: "/images/menu/pasta.png", price: "55" },
+    { name: "Classic Hummus", category: "Starters", image: "/images/menu/hummus.png", price: "28" },
+    { name: "Grilled Chicken", category: "Mains", image: "/images/menu/grilled-chicken.png", price: "58" },
+    { name: "Crispy French Fries", category: "Sides", image: "/images/menu/french-fries.png", price: "22" },
+];
+
 export default function MenuSection() {
-    const menuItems = grillFeastItems;
+    const sectionRef = useScrollReveal();
 
     return (
-        <section className={styles.menu} id="menu">
-            {/* Decorative SVGs */}
-            <div className={styles.decorLeft}>
-                <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                    <path
-                        d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z"
-                        fill="none"
-                        stroke="var(--color-light-gray)"
-                        strokeWidth="1.5"
-                        opacity="0.3"
-                    />
-                    <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                </svg>
-            </div>
-            <div className={styles.decorRight}>
-                <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                    <path
-                        d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z"
-                        fill="none"
-                        stroke="var(--color-light-gray)"
-                        strokeWidth="1.5"
-                        opacity="0.3"
-                    />
-                    <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                </svg>
-            </div>
-            <div className={styles.decorBottomLeft}>
-                <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                    <path
-                        d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z"
-                        fill="none"
-                        stroke="var(--color-light-gray)"
-                        strokeWidth="1.5"
-                        opacity="0.3"
-                    />
-                    <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                </svg>
-            </div>
-            <div className={styles.decorBottomRight}>
-                <svg viewBox="0 0 80 120" className={styles.decorSvg}>
-                    <line x1="40" y1="0" x2="40" y2="90" stroke="var(--color-light-gray)" strokeWidth="1" opacity="0.3" />
-                    <line x1="20" y1="90" x2="60" y2="90" stroke="var(--color-light-gray)" strokeWidth="1" opacity="0.3" />
-                    <circle cx="40" cy="105" r="10" fill="none" stroke="var(--color-light-gray)" strokeWidth="1" opacity="0.3" />
-                </svg>
-            </div>
-
+        <section className={styles.menu} ref={sectionRef}>
             <div className={styles.container}>
-                {/* Header */}
                 <div className={styles.header}>
-                    <span className={styles.label}>Catering Menu</span>
-                    <h2 className={styles.title}>Grill Feast</h2>
+                    <span className={styles.label}>Curated Selection</span>
+                    <h2 className={styles.title}>
+                        Signature <span className={styles.titleGold}>Creations</span>
+                    </h2>
+                    <p className={styles.subtitle}>
+                        A glimpse into our menu — dishes crafted with precision,
+                        passion, and the finest ingredients from around the world.
+                    </p>
                 </div>
 
-                {/* Menu Grid */}
                 <div className={styles.grid}>
-                    {menuItems.map((item) => (
-                        <div key={item.id} className={styles.menuItem}>
-                            <div className={styles.menuImageWrapper}>
+                    {dishes.map((dish, i) => (
+                        <div key={dish.name} className={styles.card} style={{ animationDelay: `${i * 0.1}s` }}>
+                            <div className={styles.cardImage}>
                                 <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    width={90}
-                                    height={80}
-                                    className={styles.menuImage}
+                                    src={dish.image}
+                                    alt={dish.name}
+                                    width={400}
+                                    height={300}
+                                    className={styles.img}
                                 />
+                                <span className={styles.cardCategory}>{dish.category}</span>
                             </div>
-                            <div className={styles.menuContent}>
-                                <h3 className={styles.menuName}>
-                                    {item.name}
-                                    <span className={styles.dotLine} />
-                                </h3>
-                                <p className={styles.menuDescription}>{item.description}</p>
+                            <div className={styles.cardBody}>
+                                <h3 className={styles.dishName}>{dish.name}</h3>
+                                <span className={styles.dishPrice}>AED {dish.price}</span>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* More Menu Button */}
-                <div className={styles.buttonWrapper}>
-                    <Link href="/menu" className={styles.moreMenuBtn}>
-                        MORE MENU
+                <div className={styles.cta}>
+                    <Link href="/menu" className={styles.viewAll}>
+                        View Full Menu
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                     </Link>
                 </div>
             </div>

@@ -1,187 +1,215 @@
 .catering {
-    padding: 100px 0;
-    background-color: var(--color-off-white);
+    padding: 140px 0;
+    background: var(--color-bg);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.catering:global(.visible) {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 24px;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 64px;
 }
 
 .label {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
+    display: inline-block;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--color-accent);
-    display: block;
+    color: var(--color-gold);
     margin-bottom: 16px;
+    position: relative;
+    padding-left: 48px;
+}
+
+.label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 36px;
+    height: 1px;
+    background: var(--color-gold);
 }
 
 .title {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 30px;
-    line-height: 1.3;
+    color: var(--color-white);
+    margin-bottom: 16px;
 }
 
-.description {
-    font-size: 0.95rem;
-    color: var(--color-text-light);
-    line-height: 1.8;
-    max-width: 850px;
-    margin: 0 auto 20px;
-}
-
-.subdescription {
-    font-size: 0.95rem;
-    color: var(--color-text-light);
-    line-height: 1.8;
-    max-width: 850px;
-    margin: 0 auto;
+.titleGold {
+    color: var(--color-gold);
     font-style: italic;
 }
 
-/* Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+.subtitle {
+    font-size: 0.92rem;
+    color: var(--color-text-secondary);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
 }
 
-/* Card */
-.card {
-    text-decoration: none;
-    color: inherit;
-    background-color: var(--color-white);
+/* Bento Grid */
+.bentoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 250px 250px;
+    gap: 20px;
+}
+
+.bentoItem {
+    position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-normal);
-    animation: fadeInUp 0.6s ease both;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.bentoLarge {
+    grid-row: span 2;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-}
-
-.cardImageWrapper {
-    position: relative;
-    overflow: hidden;
-    height: 240px;
-}
-
-.cardImage {
+.bentoImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    transition: transform 0.6s ease;
 }
 
-.card:hover .cardImage {
-    transform: scale(1.08);
+.bentoItem:hover .bentoImg {
+    transform: scale(1.06);
 }
 
-.cardOverlay {
+.bentoOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 10, 0.85) 100%);
+    transition: background var(--transition-normal);
+}
+
+.bentoItem:hover .bentoOverlay {
+    background: linear-gradient(180deg, transparent 10%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+.bentoContent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px;
+}
+
+.bentoTitle {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 6px;
+}
+
+.bentoDesc {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+}
+
+.bentoArrow {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background: var(--color-gold-glow);
+    border: 1px solid var(--color-gold-border);
+    border-radius: 50%;
+    color: var(--color-gold);
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.bentoItem:hover .bentoArrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    margin-top: 52px;
+}
+
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    color: var(--color-bg);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.ctaBtn::after {
+    content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: -100%;
+    width: 200%;
     height: 100%;
-    background: linear-gradient(180deg,
-            transparent 50%,
-            rgba(0, 0, 0, 0.2) 100%);
-    transition: opacity var(--transition-normal);
-    opacity: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
 }
 
-.card:hover .cardOverlay {
-    opacity: 1;
+.ctaBtn:hover::after {
+    left: 100%;
 }
 
-.cardContent {
-    padding: 20px 24px;
-}
-
-.cardTitle {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: var(--color-dark);
-    text-transform: uppercase;
+.ctaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201, 165, 92, 0.3);
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .title {
-        font-size: 2rem;
-    }
-}
-
 @media (max-width: 768px) {
-    .catering {
-        padding: 70px 0;
-    }
-
-    .header {
-        margin-bottom: 40px;
-    }
-
-    .title {
-        font-size: 1.75rem;
-    }
-
-    .grid {
-        gap: 20px;
-    }
-
-    .cardImageWrapper {
-        height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    .catering {
-        padding: 50px 0;
-    }
-
-    .grid {
+    .bentoGrid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-rows: auto;
     }
 
-    .title {
-        font-size: 1.5rem;
+    .bentoLarge {
+        grid-row: span 1;
     }
 
-    .cardImageWrapper {
-        height: 220px;
+    .bentoItem {
+        height: 250px;
+    }
+
+    .catering {
+        padding: 100px 0;
     }
 }

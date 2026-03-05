@@ -5,285 +5,130 @@ import Link from "next/link";
 import Image from "next/image";
 import { HiMenu, HiX } from "react-icons/hi";
 import { IoChevronDown } from "react-icons/io5";
+import { FiShoppingCart } from "react-icons/fi";
+import { useOrder } from "@/context/OrderContext";
 import styles from "./Header.module.css";
 
 const navLinks = [
-    { label: "HOME", href: "/" },
-    { label: "ABOUT US", href: "/about" },
-    {
-        label: "MENU",
-        href: "/menu",
-        dropdown: [
-            { label: "CATERING", href: "/menu" },
-        ],
-    },
-    {
-        label: "CATERING",
-        href: "#",
-        dropdown: [
-            {
-                label: "PRIVATE CATERING",
-                href: "/catering/private",
-                submenu: [
-                    { label: "WEDDING CATERING", href: "/catering/wedding" },
-                    { label: "BIRTHDAY PARTY CATERING", href: "/catering/birthday" },
-                    { label: "YACHT PARTY CATERING", href: "/catering/yacht" },
-                    { label: "SPECIAL OCCASION CATERING", href: "/catering/special" },
-                    { label: "KIDS PARTY CATERING", href: "/catering/kids" },
-                    { label: "GET TOGETHER", href: "/catering/get-together" },
-                ],
-            },
-            {
-                label: "CORPORATE CATERING",
-                href: "/catering/corporate",
-                submenu: [
-                    { label: "STAFF CATERING", href: "/catering/staff" },
-                    { label: "BUSINESS PARTY CATERING", href: "/catering/business" },
-                ],
-            },
-        ],
-    },
-    { label: "CONTACT US", href: "/contact" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Menu", href: "/menu" },
+    { label: "Catering", href: "/catering" },
+    { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState(null);
-    const [activeSubmenu, setActiveSubmenu] = useState(null);
+    const { getTotalItems } = useOrder();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
+        const handleScroll = () => setScrolled(window.scrollY > 30);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     useEffect(() => {
-        if (mobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-        return () => {
-            document.body.style.overflow = "";
-        };
+        document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
     }, [mobileMenuOpen]);
-
-    const handleDropdownEnter = (index) => {
-        setActiveDropdown(index);
-    };
-
-    const handleDropdownLeave = () => {
-        setActiveDropdown(null);
-        setActiveSubmenu(null);
-    };
-
-    const handleSubmenuEnter = (index) => {
-        setActiveSubmenu(index);
-    };
-
-    const toggleMobileDropdown = (index) => {
-        setActiveDropdown(activeDropdown === index ? null : index);
-        setActiveSubmenu(null);
-    };
-
-    const toggleMobileSubmenu = (index) => {
-        setActiveSubmenu(activeSubmenu === index ? null : index);
-    };
 
     return (
         <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
             <div className={styles.container}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo}>
-                    <Image
-                        src="/images/logo.png"
-                        alt="Ricky's Restaurant"
-                        width={280}
-                        height={60}
-                        className={styles.logoImage}
-                        priority
-                    />
+                    <div className={styles.textLogo}>
+                        <span className={styles.logoEmber}>EMBER</span>
+                        <span className={styles.logoAmp}>&</span>
+                        <span className={styles.logoOak}>OAK</span>
+                    </div>
                 </Link>
 
                 {/* Desktop Navigation */}
                 <nav className={styles.desktopNav}>
-                    {navLinks.map((link, index) => (
-                        <div
+                    {navLinks.map((link) => (
+                        <Link
                             key={link.label}
-                            className={styles.navItem}
-                            onMouseEnter={() => link.dropdown && handleDropdownEnter(index)}
-                            onMouseLeave={handleDropdownLeave}
+                            href={link.href}
+                            className={styles.navLink}
                         >
-                            <Link href={link.href} className={styles.navLink}>
-                                {link.label}
-                                {link.dropdown && (
-                                    <IoChevronDown className={styles.dropdownIcon} />
-                                )}
-                            </Link>
-
-                            {/* Dropdown Menu */}
-                            {link.dropdown && activeDropdown === index && (
-                                <div className={styles.dropdown}>
-                                    <div className={styles.dropdownInner}>
-                                        {link.dropdown.map((item, subIdx) => (
-                                            <div
-                                                key={item.label}
-                                                className={styles.dropdownItem}
-                                                onMouseEnter={() =>
-                                                    item.submenu && handleSubmenuEnter(subIdx)
-                                                }
-                                            >
-                                                <Link
-                                                    href={item.href}
-                                                    className={styles.dropdownLink}
-                                                >
-                                                    {item.label}
-                                                    {item.submenu && (
-                                                        <span className={styles.submenuArrow}>▸</span>
-                                                    )}
-                                                </Link>
-
-                                                {/* Submenu */}
-                                                {item.submenu && activeSubmenu === subIdx && (
-                                                    <div className={styles.submenu}>
-                                                        {item.submenu.map((sub) => (
-                                                            <Link
-                                                                key={sub.label}
-                                                                href={sub.href}
-                                                                className={styles.submenuLink}
-                                                            >
-                                                                {sub.label}
-                                                            </Link>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                            {link.label}
+                        </Link>
                     ))}
                 </nav>
 
-                {/* Reservation Button */}
-                <Link href="/contact" className={styles.reservationBtn}>
-                    Reservation
-                </Link>
-
-                {/* Mobile Menu Button */}
-                <button
-                    className={styles.mobileMenuBtn}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    {mobileMenuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
-                </button>
-            </div>
-
-            {/* Mobile Menu Overlay */}
-            <div
-                className={`${styles.mobileOverlay} ${mobileMenuOpen ? styles.overlayVisible : ""
-                    }`}
-                onClick={() => setMobileMenuOpen(false)}
-            />
-
-            {/* Mobile Menu */}
-            <nav
-                className={`${styles.mobileNav} ${mobileMenuOpen ? styles.mobileNavOpen : ""
-                    }`}
-            >
-                <div className={styles.mobileNavHeader}>
-                    <span className={styles.mobileNavTitle}>Menu</span>
+                {/* Reserve Button + Mobile Toggle */}
+                <div className={styles.headerActions}>
+                    <Link href="/order" className={styles.cartBtn} aria-label="View order">
+                        <FiShoppingCart size={22} />
+                        {getTotalItems() > 0 && (
+                            <span className={styles.cartBadge}>{getTotalItems()}</span>
+                        )}
+                    </Link>
+                    <Link href="/contact" className={styles.reserveBtn}>
+                        Reserve a Table
+                    </Link>
                     <button
-                        className={styles.mobileCloseBtn}
-                        onClick={() => setMobileMenuOpen(false)}
-                        aria-label="Close menu"
+                        className={styles.mobileToggle}
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
                     >
-                        <HiX size={24} />
+                        {mobileMenuOpen ? <HiX size={26} /> : <HiMenu size={26} />}
                     </button>
                 </div>
-                <div className={styles.mobileNavLinks}>
-                    {navLinks.map((link, index) => (
-                        <div key={link.label} className={styles.mobileNavItem}>
-                            <div className={styles.mobileNavLinkRow}>
-                                <Link
-                                    href={link.href}
-                                    className={styles.mobileNavLink}
-                                    onClick={() => !link.dropdown && setMobileMenuOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                                {link.dropdown && (
-                                    <button
-                                        className={`${styles.mobileDropdownToggle} ${activeDropdown === index ? styles.rotated : ""
-                                            }`}
-                                        onClick={() => toggleMobileDropdown(index)}
-                                        aria-label="Toggle submenu"
-                                    >
-                                        <IoChevronDown />
-                                    </button>
-                                )}
-                            </div>
+            </div>
 
-                            {/* Mobile Dropdown */}
-                            {link.dropdown && activeDropdown === index && (
-                                <div className={styles.mobileDropdown}>
-                                    {link.dropdown.map((item, subIdx) => (
-                                        <div key={item.label}>
-                                            <div className={styles.mobileDropdownLinkRow}>
-                                                <Link
-                                                    href={item.href}
-                                                    className={styles.mobileDropdownLink}
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                                {item.submenu && (
-                                                    <button
-                                                        className={`${styles.mobileDropdownToggle} ${activeSubmenu === subIdx ? styles.rotated : ""
-                                                            }`}
-                                                        onClick={() => toggleMobileSubmenu(subIdx)}
-                                                        aria-label="Toggle submenu"
-                                                    >
-                                                        <IoChevronDown size={14} />
-                                                    </button>
-                                                )}
-                                            </div>
-                                            {item.submenu && activeSubmenu === subIdx && (
-                                                <div className={styles.mobileSubmenu}>
-                                                    {item.submenu.map((sub) => (
-                                                        <Link
-                                                            key={sub.label}
-                                                            href={sub.href}
-                                                            className={styles.mobileSubmenuLink}
-                                                            onClick={() => setMobileMenuOpen(false)}
-                                                        >
-                                                            {sub.label}
-                                                        </Link>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+            {/* Fullscreen Mobile Menu */}
+            <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ""}`}>
+                <div className={styles.mobileMenuInner}>
+                    <div className={styles.mobileMenuHeader}>
+                        <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+                            <div className={styles.textLogo}>
+                                <span className={styles.logoEmber}>EMBER</span>
+                                <span className={styles.logoAmp}>&</span>
+                                <span className={styles.logoOak}>OAK</span>
+                            </div>
+                        </Link>
+                        <button
+                            className={styles.mobileCloseBtn}
+                            onClick={() => setMobileMenuOpen(false)}
+                            aria-label="Close menu"
+                        >
+                            <HiX size={28} />
+                        </button>
+                    </div>
+
+                    <nav className={styles.mobileNavLinks}>
+                        {navLinks.map((link, i) => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                className={styles.mobileLink}
+                                onClick={() => setMobileMenuOpen(false)}
+                                style={{ animationDelay: `${i * 0.08}s` }}
+                            >
+                                <span className={styles.mobileLinkNumber}>0{i + 1}</span>
+                                <span className={styles.mobileLinkText}>{link.label}</span>
+                            </Link>
+                        ))}
+                    </nav>
+
+                    <div className={styles.mobileFooter}>
+                        <Link
+                            href="/contact"
+                            className={styles.mobileReserveBtn}
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Reserve a Table
+                        </Link>
+                        <div className={styles.mobileContact}>
+                            <a href="tel:+971543392616">+971 54 339 2616</a>
+                            <span>Dubai Marina, UAE</span>
                         </div>
-                    ))}
+                    </div>
                 </div>
-                <div className={styles.mobileNavFooter}>
-                    <Link
-                        href="/contact"
-                        className={styles.mobileReservationBtn}
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
-                        Reservation
-                    </Link>
-                </div>
-            </nav>
+            </div>
         </header>
     );
 }

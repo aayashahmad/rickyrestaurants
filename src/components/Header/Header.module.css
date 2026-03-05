@@ -1,26 +1,30 @@
+/* ============================================
+   HEADER — Glassmorphic Dark Theme
+   ============================================ */
+
 .header {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 20px 0;
     transition: all var(--transition-normal);
-    background-color: rgba(44, 30, 15, 0.92);
-    backdrop-filter: blur(10px);
+    background: transparent;
 }
 
 .header.scrolled {
-    background-color: rgba(26, 26, 26, 0.97);
-    backdrop-filter: blur(12px);
-    padding: 10px 0;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    padding: 12px 0;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .container {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,471 +35,345 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--color-white);
+    z-index: 10;
 }
 
-.logoImage {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-    transition: opacity 0.3s ease;
-}
-
-.logoImage:hover {
-    opacity: 0.9;
-}
-
-.logoContent {
+.textLogo {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.logoText {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.logoName {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
     letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.logoEmber,
+.logoOak {
+    font-size: 1.6rem;
     color: var(--color-white);
-    line-height: 1;
 }
 
-.logoSubname {
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 400;
-    letter-spacing: 6px;
+.logoAmp {
+    font-size: 1.4rem;
     color: var(--color-gold);
-    line-height: 1;
-    margin-top: 2px;
+    font-style: italic;
+    opacity: 0.8;
 }
 
-.logoIcon {
-    width: 45px;
+.logoImage {
     height: 45px;
-    color: var(--color-gold);
+    width: auto;
+    object-fit: contain;
+    transition: opacity var(--transition-fast);
 }
 
-.logoSvg {
-    width: 100%;
-    height: 100%;
-}
-
-.logoArabic {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 0.75rem;
-    color: var(--color-gold);
-    line-height: 1.2;
-    direction: rtl;
-}
-
-/* Desktop Navigation */
+/* Desktop Nav */
 .desktopNav {
     display: flex;
     align-items: center;
-    gap: 5px;
-}
-
-.navItem {
-    position: relative;
+    gap: 8px;
 }
 
 .navLink {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 16px;
+    position: relative;
+    padding: 10px 20px;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 500;
-    color: var(--color-white);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: color var(--transition-fast);
-    white-space: nowrap;
 }
 
 .navLink:hover {
-    color: var(--color-gold);
+    color: var(--color-white);
 }
 
-.dropdownIcon {
-    font-size: 0.7rem;
-    transition: transform var(--transition-fast);
-}
-
-/* Dropdown */
-.dropdown {
+.navLink::after {
+    content: "";
     position: absolute;
-    top: 100%;
-    left: 0;
-    padding-top: 10px;
-    z-index: 100;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 20px;
+    height: 2px;
+    background: var(--color-gold);
+    border-radius: 1px;
+    transition: transform var(--transition-normal);
 }
 
-.dropdownInner {
-    background-color: rgba(35, 25, 15, 0.97);
-    backdrop-filter: blur(16px);
-    border-radius: var(--radius-md);
-    min-width: 230px;
-    padding: 10px 0;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(212, 168, 67, 0.15);
-    animation: fadeInDown 0.25s ease;
+.navLink:hover::after {
+    transform: translateX(-50%) scaleX(1);
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.dropdownItem {
-    position: relative;
-}
-
-.dropdownLink {
+/* Header Actions */
+.headerActions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 14px 22px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
+    gap: 16px;
+}
+
+.cartBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
     text-decoration: none;
-    letter-spacing: 0.8px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    border-left: 3px solid transparent;
+    transition: all var(--transition-fast);
 }
 
-.dropdownLink:hover {
-    background-color: rgba(35, 25, 15, 0.97);
-    color: var(--color-gold);
-    border-left-color: var(--color-gold);
-    padding-left: 26px;
+.cartBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
-.submenuArrow {
-    margin-left: 10px;
-    font-size: 0.9rem;
-}
-
-/* Submenu */
-.submenu {
+.cartBadge {
     position: absolute;
-    top: 0;
-    left: 100%;
-    background-color: rgba(35, 25, 15, 0.97);
-    backdrop-filter: blur(16px);
-    border-radius: var(--radius-md);
-    min-width: 260px;
-    padding: 10px 0;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(212, 168, 67, 0.15);
-    animation: fadeInDown 0.25s ease;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-bg);
+    background: var(--color-gold);
+    border-radius: 10px;
+    border: 2px solid var(--color-bg);
 }
 
-.submenuLink {
-    display: block;
-    padding: 13px 22px;
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    border-left: 3px solid transparent;
-}
-
-.submenuLink:hover {
-    background-color: rgba(35, 25, 15, 0.97);
-    color: var(--color-gold);
-    border-left-color: var(--color-gold);
-    padding-left: 26px;
-}
-
-/* Reservation Button */
-.reservationBtn {
+.reserveBtn {
     display: inline-flex;
     align-items: center;
-    padding: 12px 28px;
-    background-color: var(--color-accent);
-    color: var(--color-white);
+    padding: 11px 28px;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-bg);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    border-radius: var(--radius-full);
     text-decoration: none;
-    border-radius: var(--radius-md);
     transition: all var(--transition-normal);
     white-space: nowrap;
 }
 
-.reservationBtn:hover {
-    background-color: var(--color-primary);
+.reserveBtn:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 6px 24px rgba(201, 165, 92, 0.3);
 }
 
-/* Mobile Menu Button */
-.mobileMenuBtn {
+/* Mobile Toggle */
+.mobileToggle {
     display: none;
     background: none;
     border: none;
     color: var(--color-white);
+    padding: 6px;
     cursor: pointer;
-    padding: 8px;
-    transition: color var(--transition-fast);
+    z-index: 10;
 }
 
-.mobileMenuBtn:hover {
-    color: var(--color-gold);
-}
-
-/* Mobile Overlay */
-.mobileOverlay {
-    display: none;
+/* ============================================
+   FULLSCREEN MOBILE MENU
+   ============================================ */
+.mobileMenu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    pointer-events: none;
-}
-
-.mobileOverlay.overlayVisible {
-    opacity: 1;
-    pointer-events: all;
-}
-
-/* Mobile Navigation */
-.mobileNav {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: -320px;
-    width: 320px;
     height: 100vh;
     height: 100dvh;
-    background-color: var(--color-dark);
-    z-index: 1001;
-    transition: right var(--transition-normal);
+    background: var(--color-bg);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileMenu.mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobileMenuInner {
+    display: flex;
     flex-direction: column;
+    height: 100%;
+    padding: 24px 32px;
 }
 
-.mobileNav.mobileNavOpen {
-    right: 0;
-}
-
-.mobileNavHeader {
+.mobileMenuHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobileNavTitle {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-gold);
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .mobileCloseBtn {
     background: none;
     border: none;
-    color: var(--color-white);
+    color: var(--color-text-secondary);
     cursor: pointer;
     padding: 4px;
+    transition: color var(--transition-fast);
 }
 
+.mobileCloseBtn:hover {
+    color: var(--color-white);
+}
+
+/* Mobile Links */
 .mobileNavLinks {
     flex: 1;
-    padding: 16px 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 40px 0;
 }
 
-.mobileNavItem {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.mobileNavLinkRow {
+.mobileLink {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 8px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    transition: all var(--transition-normal);
+    opacity: 0;
+    animation: slideInLink 0.5s ease forwards;
 }
 
-.mobileNavLink {
-    flex: 1;
-    display: block;
-    padding: 16px 24px;
-    font-size: 0.9rem;
+.mobileMenuOpen .mobileLink {
+    opacity: 1;
+}
+
+@keyframes slideInLink {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobileLink:hover {
+    padding-left: 24px;
+}
+
+.mobileLinkNumber {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+    min-width: 24px;
+}
+
+.mobileLinkText {
+    font-family: var(--font-heading);
+    font-size: 2rem;
     font-weight: 500;
     color: var(--color-white);
-    text-decoration: none;
     letter-spacing: 1px;
     transition: color var(--transition-fast);
 }
 
-.mobileNavLink:hover {
+.mobileLink:hover .mobileLinkText {
     color: var(--color-gold);
 }
 
-.mobileDropdownToggle {
-    background: none;
-    border: none;
-    color: var(--color-white);
-    padding: 16px 24px 16px 10px;
-    cursor: pointer;
-    transition: transform var(--transition-fast);
-    font-size: 0.9rem;
-}
-
-.mobileDropdownToggle.rotated {
-    transform: rotate(180deg);
-}
-
-/* Mobile Dropdown */
-.mobileDropdown {
-    background-color: rgba(255, 255, 255, 0.03);
-    padding: 4px 0;
-}
-
-.mobileDropdownLinkRow {
+/* Mobile Footer */
+.mobileFooter {
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.mobileDropdownLink {
-    flex: 1;
-    display: block;
-    padding: 12px 24px 12px 40px;
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: color var(--transition-fast);
-}
-
-.mobileDropdownLink:hover {
-    color: var(--color-gold);
-}
-
-/* Mobile Submenu */
-.mobileSubmenu {
-    background-color: rgba(255, 255, 255, 0.03);
-    padding: 4px 0;
-}
-
-.mobileSubmenuLink {
-    display: block;
-    padding: 10px 24px 10px 56px;
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: color var(--transition-fast);
-}
-
-.mobileSubmenuLink:hover {
-    color: var(--color-gold);
-}
-
-/* Mobile Navigation Footer */
-.mobileNavFooter {
-    padding: 20px 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    flex-shrink: 0;
-}
-
-.mobileReservationBtn {
+.mobileReserveBtn {
     display: block;
     text-align: center;
-    padding: 14px 28px;
-    background-color: var(--color-accent);
-    color: var(--color-white);
-    font-size: 0.9rem;
+    padding: 16px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-bg);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    border-radius: var(--radius-full);
     text-decoration: none;
-    border-radius: var(--radius-md);
     transition: all var(--transition-normal);
 }
 
-.mobileReservationBtn:hover {
-    background-color: var(--color-primary);
+.mobileReserveBtn:hover {
+    box-shadow: 0 6px 24px rgba(201, 165, 92, 0.3);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+.mobileContact {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+}
+
+.mobileContact a {
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.mobileContact a:hover {
+    color: var(--color-gold);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
     .desktopNav {
         display: none;
     }
 
-    .reservationBtn {
+    .reserveBtn {
         display: none;
     }
 
-    .mobileMenuBtn {
+    .mobileToggle {
         display: block;
-    }
-
-    .mobileOverlay {
-        display: block;
-    }
-
-    .mobileNav {
-        display: flex;
     }
 }
 
 @media (max-width: 480px) {
-    .logoName {
-        font-size: 1.1rem;
-        letter-spacing: 2px;
+    .container {
+        padding: 0 20px;
     }
 
-    .logoSubname {
-        font-size: 0.55rem;
-        letter-spacing: 4px;
+    .logoImage {
+        height: 36px;
     }
 
-    .logoIcon {
-        width: 35px;
-        height: 35px;
+    .mobileLinkText {
+        font-size: 1.6rem;
     }
 
-    .logoArabic {
-        font-size: 0.65rem;
-    }
-
-    .mobileNav {
-        width: 280px;
-        right: -280px;
+    .mobileMenuInner {
+        padding: 20px 20px;
     }
 }

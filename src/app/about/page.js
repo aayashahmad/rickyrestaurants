@@ -1,99 +1,118 @@
+"use client";
+
+import Image from "next/image";
+import { useScrollReveal, useCountUp } from "@/hooks/useAnimations";
 import styles from "./page.module.css";
 
-export const metadata = {
-    title: "About Us | Ricky's Restaurant",
-    description:
-        "Welcome to Ricky's Restaurant, where culinary excellence meets unparalleled service in the heart of Dubai.",
-};
+const values = [
+    { icon: "🔥", title: "Passion", desc: "Every dish is crafted with love and dedication to the art of cooking" },
+    { icon: "🌿", title: "Freshness", desc: "We source ingredients daily from trusted local and international suppliers" },
+    { icon: "🤝", title: "Hospitality", desc: "Warm, personalized service that makes every guest feel like family" },
+    { icon: "⭐", title: "Excellence", desc: "Relentless pursuit of perfection in every aspect of your experience" },
+];
 
 export default function AboutPage() {
+    const heroRef = useScrollReveal();
+    const storyRef = useScrollReveal();
+    const valuesRef = useScrollReveal();
+    const statsRef = useScrollReveal();
+
+    const statYears = useCountUp(12, 2000);
+    const statDishes = useCountUp(200, 2000);
+    const statEvents = useCountUp(500, 2000);
+    const statClients = useCountUp(10000, 2500);
+
     return (
         <>
-            {/* Hero Banner */}
+            {/* Hero */}
             <section className={styles.hero}>
-                <div className={styles.heroOverlay} />
-                <h1 className={styles.heroTitle}>ABOUT US</h1>
+                <div className={styles.heroBg} />
+                <div className={styles.heroContent}>
+                    <span className={styles.heroLabel}>Our Journey</span>
+                    <h1 className={styles.heroTitle}>The Story Behind<br />Every Flavor</h1>
+                </div>
             </section>
 
-            {/* Content */}
-            <section className={styles.content}>
-                <div className={styles.container}>
-                    <span className={styles.label}>ABOUT US</span>
-                    <h2 className={styles.title}>RICKYS RESTAURANT</h2>
+            {/* Story */}
+            <section className={styles.story} ref={storyRef}>
+                <div className={styles.storyContainer}>
+                    <div className={styles.storyText}>
+                        <span className={styles.label}>Since 2012</span>
+                        <h2 className={styles.sectionTitle}>
+                            A Legacy of <span className={styles.gold}>Culinary Artistry</span>
+                        </h2>
+                        <p className={styles.paragraph}>
+                            What began as a dream to bring authentic Mediterranean and Middle Eastern
+                            flavors to Dubai has grown into one of Marina&apos;s most cherished dining
+                            destinations. Ember & Oak opened its doors in 2012, founded on
+                            the belief that great food has the power to bring people together.
+                        </p>
+                        <p className={styles.paragraph}>
+                            Over the years, we&apos;ve evolved our menu to reflect the diverse culinary
+                            landscape of Dubai, incorporating influences from Arab, Asian, Continental,
+                            and Mediterranean cuisines — all while maintaining the soulful cooking
+                            techniques that define our identity.
+                        </p>
+                        <p className={styles.paragraph}>
+                            From our live kitchen experience to our bespoke catering services, every
+                            aspect of Ember & Oak is designed to create moments worth savoring.
+                        </p>
+                    </div>
+                    <div className={styles.storyImages}>
+                        <div className={styles.storyImgMain}>
+                            <Image src="/images/about-food-1.png" alt="Our cuisine" width={500} height={600} className={styles.img} />
+                        </div>
+                        <div className={styles.storyImgFloat}>
+                            <Image src="/images/about-food-2.png" alt="Chef preparation" width={300} height={380} className={styles.img} />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                    <p className={styles.text}>
-                        Welcome to Ricky&apos;s Restaurant, where culinary excellence meets
-                        unparalleled service. Situated in the vibrant heart of Dubai,
-                        Ricky&apos;s Restaurant is renowned for its exquisite dining
-                        experiences, offering a diverse menu that caters to both local and
-                        international palates. Our commitment to quality and passion for food
-                        is reflected in every dish we serve.
-                    </p>
+            {/* Stats */}
+            <section className={styles.stats} ref={statsRef}>
+                <div className={styles.statsContainer}>
+                    <div className={styles.statItem}>
+                        <span className={styles.statNumber} ref={statYears}>0</span>
+                        <span className={styles.statSuffix}>+</span>
+                        <span className={styles.statLabel}>Years of Excellence</span>
+                    </div>
+                    <div className={styles.statItem}>
+                        <span className={styles.statNumber} ref={statDishes}>0</span>
+                        <span className={styles.statSuffix}>+</span>
+                        <span className={styles.statLabel}>Signature Dishes</span>
+                    </div>
+                    <div className={styles.statItem}>
+                        <span className={styles.statNumber} ref={statEvents}>0</span>
+                        <span className={styles.statSuffix}>+</span>
+                        <span className={styles.statLabel}>Events Catered</span>
+                    </div>
+                    <div className={styles.statItem}>
+                        <span className={styles.statNumber} ref={statClients}>0</span>
+                        <span className={styles.statSuffix}>+</span>
+                        <span className={styles.statLabel}>Happy Guests</span>
+                    </div>
+                </div>
+            </section>
 
-                    <h3 className={styles.subtitle}>Our Culinary Philosophy</h3>
-                    <p className={styles.text}>
-                        At Ricky&apos;s Restaurant, we believe that great food starts with
-                        the finest ingredients. Our chefs are dedicated to sourcing the best
-                        produce, meats, and seafood from trusted suppliers. This commitment
-                        to quality ensures that every dish is prepared with care and
-                        precision. Whether you&apos;re indulging in our signature dishes or
-                        exploring new flavors, you can expect a meal that is both delicious
-                        and nourishing.
-                    </p>
-
-                    <h3 className={styles.subtitle}>Diverse Menu</h3>
-                    <p className={styles.text}>
-                        Our menu is a celebration of culinary diversity, offering a wide
-                        range of options to suit every taste. From rich, aromatic Asian
-                        delicacies and vibrant Middle Eastern specialties to classic
-                        Mediterranean fare and innovative international cuisine, we have
-                        something for everyone. Each dish is crafted to perfection, ensuring
-                        that your dining experience is nothing short of extraordinary.
-                    </p>
-
-                    <h3 className={styles.subtitle}>Exceptional Catering Services</h3>
-                    <p className={styles.text}>
-                        In addition to our restaurant dining, Ricky&apos;s Restaurant is
-                        proud to offer comprehensive catering services for all occasions.
-                        Whether you&apos;re planning a corporate event, a wedding, or a
-                        private party, our catering team is here to make your event special.
-                        With tailored menus, impeccable service, and a focus on every detail,
-                        we bring the same level of excellence to our catered events as we do
-                        in our restaurant.
-                    </p>
-
-                    <h3 className={styles.subtitle}>Our Team</h3>
-                    <p className={styles.text}>
-                        Our team at Ricky&apos;s Restaurant is our greatest asset. From our
-                        talented chefs to our friendly and professional staff, everyone is
-                        dedicated to making your visit enjoyable. We take pride in our warm
-                        hospitality and strive to create a welcoming environment where you
-                        can relax and savor every moment.
-                    </p>
-
-                    <h3 className={styles.subtitle}>Commitment to Excellence</h3>
-                    <p className={styles.text}>
-                        At Ricky&apos;s Restaurant, we are committed to maintaining the
-                        highest standards in everything we do. From the freshness of our
-                        ingredients to the elegance of our presentation and the attentiveness
-                        of our service, we aim to exceed your expectations every time you
-                        visit.
-                    </p>
-
-                    <h3 className={styles.subtitle}>Visit Us</h3>
-                    <p className={styles.text}>
-                        Join us at Ricky&apos;s Restaurant and discover why we are a favorite
-                        among Dubai&apos;s dining enthusiasts. Whether you&apos;re looking
-                        for a casual meal with friends, a romantic dinner, or a place to
-                        celebrate a special occasion, Ricky&apos;s Restaurant is the perfect
-                        choice. Come and experience the best of culinary artistry and
-                        hospitality in a setting that feels like home.
-                    </p>
-
-                    <p className={styles.closing}>
-                        Thank you for choosing Ricky&apos;s Restaurant. We look forward to
-                        serving you soon!
-                    </p>
+            {/* Values */}
+            <section className={styles.values} ref={valuesRef}>
+                <div className={styles.valuesContainer}>
+                    <div className={styles.valuesHeader}>
+                        <span className={styles.label}>What Drives Us</span>
+                        <h2 className={styles.sectionTitle}>
+                            Our Core <span className={styles.gold}>Values</span>
+                        </h2>
+                    </div>
+                    <div className={styles.valuesGrid}>
+                        {values.map((v) => (
+                            <div key={v.title} className={styles.valueCard}>
+                                <span className={styles.valueIcon}>{v.icon}</span>
+                                <h3 className={styles.valueTitle}>{v.title}</h3>
+                                <p className={styles.valueDesc}>{v.desc}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </>

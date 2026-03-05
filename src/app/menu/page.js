@@ -1,75 +1,141 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FiSearch } from "react-icons/fi";
+import { useScrollReveal } from "@/hooks/useAnimations";
 import { menuSections } from "@/constants/menuData";
-import ReservationSection from "@/components/ReservationSection/ReservationSection";
+import { useOrder } from "@/context/OrderContext";
+import Toast from "@/components/ui/Toast";
 import styles from "./page.module.css";
 
-export const metadata = {
-    title: "Catering Menu | Ricky's Restaurant",
-    description:
-        "Explore our full catering menu — Grill Feast, Grill Paradise, Extravaganza, and International selections.",
-};
+const categories = ["All", ...new Set((menuSections || []).flatMap(s => s.items || []).map(() => ""))].filter(Boolean);
 
 export default function MenuPage() {
+    const [activeCategory, setActiveCategory] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
+    const heroRef = useScrollReveal();
+    const menuRef = useScrollReveal();
+    const router = useRouter();
+    const { addItem } = useOrder();
+
+    const allItems = (menuSections || []).flatMap((section) =>
+        (section.items || []).map((item) => ({ ...item, category: section.title }))
+    );
+
+    const sectionTitles = ["All", ...(menuSections || []).map(s => s.title)];
+    
+    let filtered = activeCategory === 0 ? allItems : allItems.filter(item => item.category === sectionTitles[activeCategory]);
+    
+    if (searchQuery.trim()) {
+        filtered = filtered.filter(item => 
+            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()))
+        );
+    }
+
+    const handleItemClick = (item) => {
+        addItem(item);
+        setToastMessage(`${item.name} added to your order!`);
+        setShowToast(true);
+    };
+
+    const handleViewOrder = () => {
+        setShowToast(false);
+        router.push("/order");
+    };
+
     return (
         <>
-            {/* Hero Banner */}
+            {/* Hero */}
             <section className={styles.hero}>
-                <div className={styles.heroOverlay} />
-                <h1 className={styles.heroTitle}>CATERING MENU</h1>
+                <div className={styles.heroBg} />
+                <div className={styles.heroContent}>
+                    <span className={styles.heroLabel}>Culinary Collection</span>
+                    <h1 className={styles.heroTitle}>Our Menu</h1>
+                </div>
             </section>
 
-            {/* Menu Sections */}
-            <div className={styles.menuPage}>
-                {menuSections.map((section) => (
-                    <section key={section.id} className={styles.section} id={section.id}>
-                        {/* Decorative SVGs */}
-                        <div className={styles.decorLeft}>
-                            <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                                <path d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                                <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                            </svg>
-                        </div>
-                        <div className={styles.decorRight}>
-                            <svg viewBox="0 0 120 200" className={styles.decorSvg}>
-                                <path d="M60 10 L90 80 L70 80 L60 190 L50 80 L30 80 Z" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                                <circle cx="60" cy="30" r="25" fill="none" stroke="var(--color-light-gray)" strokeWidth="1.5" opacity="0.3" />
-                            </svg>
-                        </div>
+            {/* Menu */}
+            <section className={styles.menuSection} ref={menuRef}>
+                <div className={styles.container}>
+                    {/* Search Bar */}
+                    <div className={styles.searchContainer}>
+                        <FiSearch className={styles.searchIcon} />
+                        <input
+                            type="text"
+                            placeholder="Search for dishes..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className={styles.searchInput}
+                        />
+                        {searchQuery && (
+                            <button
+                                className={styles.clearBtn}
+                                onClick={() => setSearchQuery("")}
+                                aria-label="Clear search"
+                            >
+                                ×
+                            </button>
+                        )}
+                    </div>
 
-                        <div className={styles.container}>
-                            <h2 className={styles.sectionTitle}>{section.title}</h2>
+                    {/* Category Filter */}
+                    <div className={styles.filters}>
+                        {sectionTitles.map((cat, i) => (
+                            <button
+                                key={cat}
+                                className={`${styles.filterBtn} ${activeCategory === i ? styles.filterActive : ""}`}
+                                onClick={() => setActiveCategory(i)}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
 
-                            <div className={styles.grid}>
-                                {section.items.map((item) => (
-                                    <div key={item.id} className={styles.menuItem}>
-                                        <div className={styles.menuImageWrapper}>
-                                            <Image
-                                                src={item.image}
-                                                alt={item.name}
-                                                width={90}
-                                                height={80}
-                                                className={styles.menuImage}
-                                            />
-                                        </div>
-                                        <div className={styles.menuContent}>
-                                            <h3 className={styles.menuName}>
-                                                {item.name}
-                                                <span className={styles.dotLine} />
-                                            </h3>
-                                            <p className={styles.menuDescription}>
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                ))}
+                    {/* Items Grid */}
+                    <div className={styles.grid}>
+                        {filtered.map((item) => (
+                            <div 
+                                key={item.id || item.name} 
+                                className={styles.menuCard}
+                                onClick={() => handleItemClick(item)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <div className={styles.cardImage}>
+                                    <Image
+                                        src={item.image}
+                                        alt={item.name}
+                                        width={400}
+                                        height={300}
+                                        className={styles.cardImg}
+                                    />
+                                    <span className={styles.cardBadge}>{item.category}</span>
+                                </div>
+                                <div className={styles.cardBody}>
+                                    <h3 className={styles.cardName}>{item.name}</h3>
+                                    {item.description && (
+                                        <p className={styles.cardDesc}>{item.description}</p>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                ))}
-            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-            {/* Reservation Form */}
-            <ReservationSection />
+            {showToast && (
+                <Toast
+                    message={toastMessage}
+                    type="info"
+                    action="View Order"
+                    onAction={handleViewOrder}
+                    onClose={() => setShowToast(false)}
+                />
+            )}
         </>
     );
 }
