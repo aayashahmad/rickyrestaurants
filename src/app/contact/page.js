@@ -132,7 +132,7 @@ export default function ContactPage() {
                                     </select>
                                     <label
                                         htmlFor="c-table"
-                                        className={`${styles.floatLabel} ${styles.selectLabel} ${!formData.table ? styles.selectLabelActive : ""}`}
+                                        className={`${styles.floatLabel} ${styles.selectLabel}`}
                                     >
                                         Select Table
                                     </label>
