@@ -296,10 +296,10 @@
     right: -320px;
     width: 320px;
     height: 100vh;
+    height: 100dvh;
     background-color: var(--color-dark);
     z-index: 1001;
     transition: right var(--transition-normal);
-    overflow-y: auto;
     flex-direction: column;
 }
 
@@ -333,6 +333,8 @@
 .mobileNavLinks {
     flex: 1;
     padding: 16px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobileNavItem {
@@ -428,6 +430,7 @@
 .mobileNavFooter {
     padding: 20px 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .mobileReservationBtn {

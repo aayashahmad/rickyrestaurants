@@ -238,9 +238,7 @@ export default function Header() {
                                                 <Link
                                                     href={item.href}
                                                     className={styles.mobileDropdownLink}
-                                                    onClick={() =>
-                                                        !item.submenu && setMobileMenuOpen(false)
-                                                    }
+                                                    onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     {item.label}
                                                 </Link>
