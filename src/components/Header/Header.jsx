@@ -7,6 +7,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { IoChevronDown } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { useOrder } from "@/context/OrderContext";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./Header.module.css";
 
 const navLinks = [
@@ -21,6 +22,7 @@ export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { getTotalItems } = useOrder();
+    const { language, toggleLanguage } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -63,6 +65,17 @@ export default function Header() {
 
                 {/* Reserve Button + Mobile Toggle */}
                 <div className={styles.headerActions}>
+                    <button
+                        type="button"
+                        className={styles.langToggle}
+                        onClick={toggleLanguage}
+                        aria-label="Toggle language"
+                        data-no-translate="true"
+                    >
+                        <span className={language === "en" ? styles.langActive : styles.langInactive}>EN</span>
+                        <span className={styles.langDivider}>|</span>
+                        <span className={language === "ar" ? styles.langActive : styles.langInactive}>AR</span>
+                    </button>
                     <Link href="/order" className={styles.cartBtn} aria-label="View order">
                         <FiShoppingCart size={22} />
                         {getTotalItems() > 0 && (
@@ -120,6 +133,20 @@ export default function Header() {
                     </nav>
 
                     <div className={styles.mobileFooter}>
+                        <button
+                            type="button"
+                            className={styles.mobileLangToggle}
+                            onClick={() => {
+                                toggleLanguage();
+                                setMobileMenuOpen(false);
+                            }}
+                            aria-label="Toggle language"
+                            data-no-translate="true"
+                        >
+                            <span className={language === "en" ? styles.langActive : styles.langInactive}>EN</span>
+                            <span className={styles.langDivider}>|</span>
+                            <span className={language === "ar" ? styles.langActive : styles.langInactive}>AR</span>
+                        </button>
                         <Link
                             href="/contact"
                             className={styles.mobileReserveBtn}

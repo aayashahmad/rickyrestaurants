@@ -5,6 +5,8 @@ import Footer from "@/components/Footer/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import { OrderProvider } from "@/context/OrderContext";
 import { BookingProvider } from "@/context/BookingContext";
+import { LanguageProvider } from "@/context/LanguageContext";
+import AutoTranslate from "@/components/AutoTranslate/AutoTranslate";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -40,16 +42,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${cormorant.variable} ${inter.variable}`}>
-        <OrderProvider>
-          <BookingProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-            <ScrollToTop />
-          </BookingProvider>
-        </OrderProvider>
+        <LanguageProvider>
+          <OrderProvider>
+            <BookingProvider>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+              <ScrollToTop />
+              <AutoTranslate />
+            </BookingProvider>
+          </OrderProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
 }
-

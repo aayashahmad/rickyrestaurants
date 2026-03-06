@@ -72,7 +72,7 @@ export default function Footer() {
                 </div>
 
                 <div className={styles.bottom}>
-                    <span>© {new Date().getFullYear()} Ricky's Restaurant. All rights reserved.</span>
+                    <span>© {new Date().getFullYear()} Ricky&apos;s Restaurant. All rights reserved.</span>
                 </div>
             </div>
         </footer>
