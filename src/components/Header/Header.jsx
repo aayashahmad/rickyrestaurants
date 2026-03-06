@@ -38,11 +38,14 @@ export default function Header() {
             <div className={styles.container}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo}>
-                    <div className={styles.textLogo}>
-                        <span className={styles.logoEmber}>EMBER</span>
-                        <span className={styles.logoAmp}>&</span>
-                        <span className={styles.logoOak}>OAK</span>
-                    </div>
+                    <Image
+                        src="/images/logo.png"
+                        alt="Ricky's Restaurant"
+                        width={200}
+                        height={45}
+                        className={styles.logoImage}
+                        priority
+                    />
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -84,11 +87,13 @@ export default function Header() {
                 <div className={styles.mobileMenuInner}>
                     <div className={styles.mobileMenuHeader}>
                         <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                            <div className={styles.textLogo}>
-                                <span className={styles.logoEmber}>EMBER</span>
-                                <span className={styles.logoAmp}>&</span>
-                                <span className={styles.logoOak}>OAK</span>
-                            </div>
+                            <Image
+                                src="/images/logo.png"
+                                alt="Ricky's Restaurant"
+                                width={180}
+                                height={40}
+                                className={styles.logoImage}
+                            />
                         </Link>
                         <button
                             className={styles.mobileCloseBtn}

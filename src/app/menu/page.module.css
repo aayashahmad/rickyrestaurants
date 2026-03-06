@@ -232,9 +232,17 @@
 }
 
 .cardDesc {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: var(--color-text-muted);
-    line-height: 1.5;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.cardPrice {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    margin-top: 8px;
 }
 
 /* Responsive */

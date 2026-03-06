@@ -1,0 +1,25 @@
+<svg width="1000" height="220" viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- RICKYS text (left side) -->
+  <text x="50" y="100" font-family="Arial, sans-serif" font-size="80" font-weight="900" fill="#C9A55C" letter-spacing="2">RICKYS</text>
+  <!-- RESTAURANT text (left side, below) -->
+  <text x="20" y="170" font-family="Arial, sans-serif" font-size="55" font-weight="900" fill="#C9A55C" letter-spacing="1">RESTAURANT</text>
+  
+  <!-- Decorative circle with pattern (center) -->
+  <circle cx="510" cy="110" r="95" fill="none" stroke="#C9A55C" stroke-width="2"/>
+  <circle cx="510" cy="110" r="88" fill="none" stroke="#C9A55C" stroke-width="0.5" stroke-dasharray="3,3"/>
+  
+  <!-- Decorative pattern inside circle -->
+  <path d="M 510 20 Q 520 25 510 30 Q 500 25 510 20 M 470 40 Q 475 50 470 60 M 550 40 Q 545 50 550 60 M 450 110 Q 455 115 450 120 M 570 110 Q 565 115 570 120 M 470 180 Q 475 170 470 160 M 550 180 Q 545 170 550 160" stroke="#C9A55C" stroke-width="0.5" fill="none"/>
+  
+  <!-- Crown above RR -->
+  <path d="M 485 65 L 490 80 L 495 70 L 500 80 L 505 70 L 510 80 L 515 70 L 520 80 L 525 70 L 530 80 L 535 65 L 510 75 Z" fill="#C9A55C"/>
+  
+  <!-- RR monogram -->
+  <text x="510" y="145" font-family="Georgia, serif" font-size="65" font-weight="bold" fill="#C9A55C" text-anchor="middle">RR</text>
+  
+  <!-- Arabic text (right side) -->
+  <!-- مطعم (Restaurant in Arabic) -->
+  <text x="720" y="100" font-family="Arial, sans-serif" font-size="65" font-weight="bold" fill="#C9A55C" text-anchor="start">مطعم</text>
+  <!-- ريكيس (Rickys in Arabic) -->
+  <text x="650" y="170" font-family="Arial, sans-serif" font-size="55" font-weight="bold" fill="#C9A55C" text-anchor="start">ريكيس</text>
+</svg>

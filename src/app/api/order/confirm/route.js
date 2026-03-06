@@ -4,9 +4,18 @@ const WHATSAPP_NUMBER = "7006052604";
 
 async function generateAIConfirmation(orderDetails) {
     const { customer, items, totalItems } = orderDetails;
+    const totalAmount = (items || []).reduce(
+        (sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0),
+        0
+    );
     
     const itemsList = items
-        .map((item) => `- ${item.name} (x${item.quantity})`)
+        .map((item) => {
+            const price = Number(item.price) || 0;
+            const qty = Number(item.quantity) || 0;
+            const lineTotal = price * qty;
+            return `- ${item.name} (x${qty}) — AED ${price} — AED ${lineTotal}`;
+        })
         .join("\n");
 
     const confirmationMessage = `
@@ -16,6 +25,7 @@ async function generateAIConfirmation(orderDetails) {
 ${itemsList}
 
 📦 *Total Items:* ${totalItems}
+💰 *Total Amount:* AED ${totalAmount}
 
 👤 *Customer Information:*
 *Name:* ${customer.name}

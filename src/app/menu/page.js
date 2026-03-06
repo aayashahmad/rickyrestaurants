@@ -125,6 +125,9 @@ export default function MenuPage() {
                                     {item.description && (
                                         <p className={styles.cardDesc}>{item.description}</p>
                                     )}
+                                    {item.price && (
+                                        <p className={styles.cardPrice}>AED {item.price}</p>
+                                    )}
                                 </div>
                             </div>
                         ))}

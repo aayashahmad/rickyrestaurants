@@ -21,11 +21,13 @@ export default function Footer() {
                 <div className={styles.grid}>
                     {/* Brand */}
                     <div className={styles.brand}>
-                        <div className={styles.textLogo}>
-                            <span className={styles.logoEmber}>EMBER</span>
-                            <span className={styles.logoAmp}>&</span>
-                            <span className={styles.logoOak}>OAK</span>
-                        </div>
+                        <Image
+                            src="/images/logo.png"
+                            alt="Ricky's Restaurant"
+                            width={280}
+                            height={62}
+                            className={styles.logo}
+                        />
                         <p className={styles.brandText}>
                             Crafting unforgettable culinary experiences in the heart
                             of Dubai Marina since 2012.
@@ -70,7 +72,7 @@ export default function Footer() {
                 </div>
 
                 <div className={styles.bottom}>
-                    <span>© {new Date().getFullYear()} Ember & Oak. All rights reserved.</span>
+                    <span>© {new Date().getFullYear()} Ricky's Restaurant. All rights reserved.</span>
                 </div>
             </div>
         </footer>

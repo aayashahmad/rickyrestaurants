@@ -19,12 +19,16 @@ export default function OrderItem({ item, onUpdateQuantity, onRemove }) {
             <div className={styles.itemDetails}>
                 <h4 className={styles.itemName}>{item.name}</h4>
                 <p className={styles.itemCategory}>{item.category}</p>
+                {item.price && (
+                    <p className={styles.itemPrice}>AED {item.price} × {item.quantity} = AED {item.price * item.quantity}</p>
+                )}
             </div>
             <div className={styles.itemActions}>
                 <div className={styles.quantityControl}>
                     <button
                         className={styles.quantityBtn}
                         onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                        disabled={item.quantity <= 1}
                         aria-label="Decrease quantity"
                     >
                         <FiMinus />

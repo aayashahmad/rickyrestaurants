@@ -18,6 +18,12 @@ export default function OrderPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
 
+    const calculateTotal = () => {
+        return orderItems.reduce((total, item) => {
+            return total + (item.price || 0) * item.quantity;
+        }, 0);
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -206,12 +212,19 @@ export default function OrderPage() {
                                 />
                             </div>
 
+                            <div className={styles.totalSection}>
+                                <div className={styles.totalRow}>
+                                    <span className={styles.totalLabel}>Total Amount:</span>
+                                    <span className={styles.totalAmount}>AED {calculateTotal()}</span>
+                                </div>
+                            </div>
+
                             <button
                                 type="submit"
                                 className={styles.submitBtn}
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? "Processing..." : "Confirm Order"}
+                                {isSubmitting ? "Submitting..." : "Confirm Order"}
                             </button>
                         </form>
                     </div>

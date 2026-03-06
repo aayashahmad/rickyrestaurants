@@ -1,9 +1,9 @@
 import styles from "./page.module.css";
 
 export const metadata = {
-    title: "Privacy Policy | Ember & Oak",
+    title: "Privacy Policy | Ricky's Restaurant",
     description:
-        "Privacy Policy for Ember & Oak website. Learn how we collect, use, and protect your information.",
+        "Privacy Policy for Ricky's Restaurant website. Learn how we collect, use, and protect your information.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
                 <div className={styles.container}>
                     <h2 className={styles.sectionHeading}>1. Introduction</h2>
                     <p className={styles.text}>
-                        Welcome to Ember & Oak! At emberandoak.com, we
+                        Welcome to Ricky's Restaurant! At rickysrestaurant.ae, we
                         are committed to protecting your privacy. This Privacy
                         Policy explains how we collect, use, disclose, and
                         safeguard your information when you visit our website.
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
                         </li>
                         <li>
                             To comply with legal obligations and protect the
-                            rights, property, or safety of Ember & Oak, our
+                            rights, property, or safety of Ricky's Restaurant, our
                             users, or others.
                         </li>
                     </ul>
@@ -233,7 +233,7 @@ export default function PrivacyPolicyPage() {
 
                     <p className={styles.thankYou}>
                         <strong>
-                            Thank you for visiting Ember & Oak!
+                            Thank you for visiting Ricky's Restaurant!
                         </strong>
                     </p>
                 </div>
