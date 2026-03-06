@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
                 <div className={styles.container}>
                     <h2 className={styles.sectionHeading}>1. Introduction</h2>
                     <p className={styles.text}>
-                        Welcome to Ricky's Restaurant! At rickysrestaurant.ae, we
+                        Welcome to Ricky&apos;s Restaurant! At rickysrestaurant.ae, we
                         are committed to protecting your privacy. This Privacy
                         Policy explains how we collect, use, disclose, and
                         safeguard your information when you visit our website.
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
                         </li>
                         <li>
                             To comply with legal obligations and protect the
-                            rights, property, or safety of Ricky's Restaurant, our
+                            rights, property, or safety of Ricky&apos;s Restaurant, our
                             users, or others.
                         </li>
                     </ul>
@@ -233,7 +233,7 @@ export default function PrivacyPolicyPage() {
 
                     <p className={styles.thankYou}>
                         <strong>
-                            Thank you for visiting Ricky's Restaurant!
+                            Thank you for visiting Ricky&apos;s Restaurant!
                         </strong>
                     </p>
                 </div>

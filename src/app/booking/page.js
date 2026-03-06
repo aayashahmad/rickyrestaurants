@@ -88,7 +88,7 @@ export default function BookingPage() {
             <div className={styles.container}>
                 <h1 className={styles.pageTitle}>Book Your Event</h1>
                 <p className={styles.subtitle}>
-                    Complete the form below and we'll call you to finalize the details
+                    Complete the form below and we&apos;ll call you to finalize the details
                 </p>
 
                 <div className={styles.bookingLayout}>

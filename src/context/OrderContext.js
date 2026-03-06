@@ -5,14 +5,14 @@ import { createContext, useContext, useState, useEffect } from "react";
 const OrderContext = createContext();
 
 export function OrderProvider({ children }) {
-    const [orderItems, setOrderItems] = useState([]);
-
-    useEffect(() => {
-        const saved = localStorage.getItem("orderItems");
-        if (saved) {
-            setOrderItems(JSON.parse(saved));
+    const [orderItems, setOrderItems] = useState(() => {
+        try {
+            const saved = typeof window !== "undefined" ? localStorage.getItem("orderItems") : null;
+            return saved ? JSON.parse(saved) : [];
+        } catch {
+            return [];
         }
-    }, []);
+    });
 
     useEffect(() => {
         localStorage.setItem("orderItems", JSON.stringify(orderItems));
