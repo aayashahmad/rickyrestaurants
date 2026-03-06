@@ -24,7 +24,7 @@ export default function CateringSection() {
                         Catering <span className={styles.titleGold}>Redefined</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        From intimate gatherings to grand celebrations — we bring Ember & Oak&apos;s
+                        From intimate gatherings to grand celebrations — we bring Ricky&apos;s Restaurant&apos;s
                         culinary excellence to your venue, anywhere in Dubai.
                     </p>
                 </div>

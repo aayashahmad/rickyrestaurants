@@ -59,7 +59,7 @@ export default function CateringPage() {
                     <span className={styles.heroLabel}>Bespoke Services</span>
                     <h1 className={styles.heroTitle}>Catering<br />Redefined</h1>
                     <p className={styles.heroSubtitle}>
-                        From intimate dinners to grand celebrations — Ember & Oak brings culinary
+                        From intimate dinners to grand celebrations — Ricky&apos;s Restaurant brings culinary
                         excellence to your venue, anywhere in Dubai.
                     </p>
                 </div>

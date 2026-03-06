@@ -44,7 +44,7 @@ export default function AboutPage() {
                         <p className={styles.paragraph}>
                             What began as a dream to bring authentic Mediterranean and Middle Eastern
                             flavors to Dubai has grown into one of Marina&apos;s most cherished dining
-                            destinations. Ember & Oak opened its doors in 2012, founded on
+                            destinations. Ricky&apos;s Restaurant opened its doors in 2012, founded on
                             the belief that great food has the power to bring people together.
                         </p>
                         <p className={styles.paragraph}>
@@ -55,7 +55,7 @@ export default function AboutPage() {
                         </p>
                         <p className={styles.paragraph}>
                             From our live kitchen experience to our bespoke catering services, every
-                            aspect of Ember & Oak is designed to create moments worth savoring.
+                            aspect of Ricky&apos;s Restaurant is designed to create moments worth savoring.
                         </p>
                     </div>
                     <div className={styles.storyImages}>

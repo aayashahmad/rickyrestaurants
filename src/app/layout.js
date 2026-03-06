@@ -23,18 +23,18 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Ember & Oak | Flavors That Define Dubai",
+  title: "Ricky's Restaurant | Flavors That Define Dubai",
   description:
-    "Experience culinary artistry at Ember & Oak — Dubai Marina's premier destination for exquisite dining, bespoke catering, and unforgettable gatherings.",
+    "Experience culinary artistry at Ricky's Restaurant — Dubai Marina's premier destination for exquisite dining, bespoke catering, and unforgettable gatherings.",
   keywords:
     "restaurant Dubai, fine dining Dubai Marina, catering services Dubai, luxury dining, private events, corporate catering",
   openGraph: {
-    title: "Ember & Oak | Flavors That Define Dubai",
+    title: "Ricky's Restaurant | Flavors That Define Dubai",
     description:
       "Dubai Marina's premier destination for exquisite dining and bespoke catering.",
     type: "website",
     locale: "en_US",
-    siteName: "Ember & Oak",
+    siteName: "Ricky's Restaurant",
   },
 };
 

@@ -45,7 +45,7 @@ export default function AboutSection() {
                         <span className={styles.titleGold}>Modern Gastronomy</span>
                     </h2>
                     <p className={styles.description}>
-                        Nestled in the vibrant heart of Dubai Marina, Ember & Oak
+                        Nestled in the vibrant heart of Dubai Marina, Ricky&apos;s Restaurant
                         has been a beacon of culinary excellence since its inception. We blend
                         time-honored recipes from across the Middle East and Mediterranean with
                         contemporary techniques to create dishes that surprise and delight.
