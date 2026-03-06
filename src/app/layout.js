@@ -1,6 +1,6 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header/Header";
+import HeaderClientOnly from "@/components/Header/HeaderClientOnly";
 import Footer from "@/components/Footer/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import { OrderProvider } from "@/context/OrderContext";
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         <LanguageProvider>
           <OrderProvider>
             <BookingProvider>
-              <Header />
+              <HeaderClientOnly />
               <main>{children}</main>
               <Footer />
               <ScrollToTop />

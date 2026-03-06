@@ -37,7 +37,7 @@ export default function Header() {
     }, [mobileMenuOpen]);
 
     return (
-        <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+        <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`} data-no-translate="true">
             <div className={styles.container}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo}>
