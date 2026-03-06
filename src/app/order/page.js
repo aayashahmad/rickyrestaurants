@@ -217,6 +217,9 @@ export default function OrderPage() {
                                     <span className={styles.totalLabel}>Total Amount:</span>
                                     <span className={styles.totalAmount}>AED {calculateTotal()}</span>
                                 </div>
+                                <p className={styles.paymentNote}>
+                                    Note: Currently, Cash on Delivery is available. Card payments will be available soon.
+                                </p>
                             </div>
 
                             <button

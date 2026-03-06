@@ -164,6 +164,13 @@
     color: var(--color-gold);
 }
 
+.paymentNote {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+}
+
 .submitBtn {
     width: 100%;
     padding: 16px;
