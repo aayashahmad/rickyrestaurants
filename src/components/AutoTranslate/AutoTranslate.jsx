@@ -97,7 +97,7 @@ export default function AutoTranslate() {
   useEffect(() => {
     if (typeof document === "undefined") return;
 
-    const root = document.querySelector("main") || document.body;
+    const root = document.body;
     if (!root) return;
 
     const textNodes = collectTextNodes(root);

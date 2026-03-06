@@ -11,11 +11,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import styles from "./Header.module.css";
 
 const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Menu", href: "/menu" },
-    { label: "Catering", href: "/catering" },
-    { label: "Contact", href: "/contact" },
+    { label: { en: "Home", ar: "الرئيسية" }, href: "/" },
+    { label: { en: "About", ar: "من نحن" }, href: "/about" },
+    { label: { en: "Menu", ar: "القائمة" }, href: "/menu" },
+    { label: { en: "Catering", ar: "التموين" }, href: "/catering" },
+    { label: { en: "Contact", ar: "تواصل معنا" }, href: "/contact" },
 ];
 
 export default function Header() {
@@ -23,6 +23,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { getTotalItems } = useOrder();
     const { language, toggleLanguage } = useLanguage();
+    const isAr = language === "ar";
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -54,11 +55,11 @@ export default function Header() {
                 <nav className={styles.desktopNav}>
                     {navLinks.map((link) => (
                         <Link
-                            key={link.label}
+                            key={link.href}
                             href={link.href}
                             className={styles.navLink}
                         >
-                            {link.label}
+                            {isAr ? link.label.ar : link.label.en}
                         </Link>
                     ))}
                 </nav>
@@ -83,7 +84,7 @@ export default function Header() {
                         )}
                     </Link>
                     <Link href="/contact" className={styles.reserveBtn}>
-                        Reserve a Table
+                        {isAr ? "احجز طاولة" : "Reserve a Table"}
                     </Link>
                     <button
                         className={styles.mobileToggle}
@@ -120,14 +121,14 @@ export default function Header() {
                     <nav className={styles.mobileNavLinks}>
                         {navLinks.map((link, i) => (
                             <Link
-                                key={link.label}
+                                key={link.href}
                                 href={link.href}
                                 className={styles.mobileLink}
                                 onClick={() => setMobileMenuOpen(false)}
                                 style={{ animationDelay: `${i * 0.08}s` }}
                             >
                                 <span className={styles.mobileLinkNumber}>0{i + 1}</span>
-                                <span className={styles.mobileLinkText}>{link.label}</span>
+                                <span className={styles.mobileLinkText}>{isAr ? link.label.ar : link.label.en}</span>
                             </Link>
                         ))}
                     </nav>
@@ -152,7 +153,7 @@ export default function Header() {
                             className={styles.mobileReserveBtn}
                             onClick={() => setMobileMenuOpen(false)}
                         >
-                            Reserve a Table
+                            {isAr ? "احجز طاولة" : "Reserve a Table"}
                         </Link>
                         <div className={styles.mobileContact}>
                             <a href="tel:+971543392616">+971 54 339 2616</a>
