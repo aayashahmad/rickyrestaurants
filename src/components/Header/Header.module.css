@@ -432,6 +432,17 @@
         padding: 0 20px;
     }
 
+    .headerActions {
+        gap: 10px;
+    }
+
+    .langToggle {
+        height: 36px;
+        padding: 0 10px;
+        gap: 6px;
+        font-size: 0.72rem;
+    }
+
     .logoImage {
         height: 36px;
     }
